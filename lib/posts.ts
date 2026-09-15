@@ -34,13 +34,19 @@ export function loadPosts(): Post[] {
       return {
         slug,
         title: String(data.title),
-        date: String(data.date),
+        // YAML이 날짜를 Date로 파싱한다. 문자열로 되돌린다.
+        date: toDateString(data.date),
         summary: String(data.summary ?? ''),
         tags: (data.tags ?? []) as string[],
         body: content,
       }
     })
     .sort((a, b) => b.date.localeCompare(a.date))
+}
+
+function toDateString(value: unknown): string {
+  if (value instanceof Date) return value.toISOString().slice(0, 10)
+  return String(value).slice(0, 10)
 }
 
 export function loadPost(slug: string): Post | undefined {
