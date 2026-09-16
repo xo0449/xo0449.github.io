@@ -12,6 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ko">
       <body>
+        <div className="site-header-wrap">
         <header className="site-header">
           <Link href="/">xo0449</Link>
           <nav className="nav-links">
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <a href="https://github.com/xo0449">GitHub</a>
           </nav>
         </header>
+        </div>
         <div className="shell">
           <main>{children}</main>
           <Toc />
