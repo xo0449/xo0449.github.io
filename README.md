@@ -20,6 +20,8 @@ tags: [mysql, 성능]
 
 `title`과 `date`가 없으면 빌드가 실패합니다.
 
+글의 종류와 제목 규칙은 [WRITING.md](WRITING.md)에 있습니다.
+
 ## 실행
 
 ```bash
