@@ -3,6 +3,8 @@ import Link from 'next/link'
 import './globals.css'
 import Toc from './toc'
 
+export const viewport = { colorScheme: 'light' as const }
+
 export const metadata: Metadata = {
   title: '홍종혁 · 백엔드 개발자',
   description: '커머스 백엔드 개발자. 임베디드와 통신을 거쳐 왔습니다.',

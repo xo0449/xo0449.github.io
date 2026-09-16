@@ -1,4 +1,6 @@
+/* 다크 모드를 쓰지 않는다. 밝은 색만 둔다. */
 :root {
+  color-scheme: light;
   --header-h: 3.4rem;
   --bg: #fbfbfa;
   --fg: #1c1c1a;
@@ -10,18 +12,6 @@
   --build: #7a5c2e;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #17171a;
-    --fg: #ededea;
-    --muted: #9a9a92;
-    --line: #2c2c30;
-    --card: #1e1e22;
-    --accent: #7fb5a3;
-    --experiment: #7fb5a3;
-    --build: #d0a865;
-  }
-}
 
 * { box-sizing: border-box; }
 
