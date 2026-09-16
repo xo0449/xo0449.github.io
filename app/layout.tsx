@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import './globals.css'
+import Toc from './toc'
 
 export const metadata: Metadata = {
   title: 'xo0449',
@@ -18,7 +19,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <a href="https://github.com/xo0449">GitHub</a>
           </nav>
         </header>
-        <main>{children}</main>
+        <div className="shell">
+          <main>{children}</main>
+          <Toc />
+        </div>
       </body>
     </html>
   )
