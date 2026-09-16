@@ -66,7 +66,13 @@ export default function Toc() {
       el.id = id
       return { id, text, level: el.tagName === 'H2' ? 2 : 3 }
     })
-    if (found.length === 0) return
+    /**
+     * 소제목이 셋 미만이면 목차를 띄우지 않는다.
+     *
+     * 짧은 글에 목차가 붙으면 본문보다 목차가 눈에 먼저 들어온다.
+     * 긴 글에서만 필요한 장치다.
+     */
+    if (found.length < 3) return
     setHeadings(found)
 
     /**
