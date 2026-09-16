@@ -231,3 +231,54 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
   .shell { grid-template-columns: minmax(0, 1fr); }
   .toc { display: none; }
 }
+
+/* 랜딩 */
+.hero { padding: 1rem 0 2.5rem; border-bottom: 1px solid var(--line); }
+.hero h1 { font-size: 1.9rem; margin: 0 0 0.9rem; letter-spacing: -0.01em; }
+.hero-line { margin: 0 0 0.6rem; font-size: 1.02rem; }
+.hero-sub { margin: 0; color: var(--muted); }
+
+.block { padding: 2.2rem 0; border-bottom: 1px solid var(--line); }
+.block:last-child { border-bottom: none; }
+.block h2 { font-size: 1.02rem; margin: 0 0 1.4rem; }
+
+.career { margin-bottom: 2rem; }
+.career:last-child { margin-bottom: 0; }
+
+.career-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.career-company { font-weight: 600; }
+.career-period { color: var(--muted); font-size: 0.82rem; white-space: nowrap; }
+.career-role { color: var(--muted); font-size: 0.88rem; margin-top: 0.15rem; }
+
+.career-points { margin: 0.7rem 0 0; padding-left: 1.1rem; }
+.career-points li { margin-bottom: 0.4rem; }
+
+.stack { margin: 0; }
+.stack-row {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.stack-row:last-child { border-bottom: none; }
+.stack dt { color: var(--muted); font-size: 0.88rem; }
+.stack dd { margin: 0; }
+
+.note { color: var(--muted); font-size: 0.88rem; margin-top: 1rem; }
+.page-title { font-size: 1.5rem; margin: 0 0 0.8rem; }
+
+.block .post-item { padding: 1rem 0; }
+.block .post-item h3 { margin: 0.3rem 0 0.35rem; font-size: 0.98rem; }
+.block .post-item p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+
+@media (max-width: 620px) {
+  .stack-row { grid-template-columns: minmax(0, 1fr); gap: 0.2rem; }
+  .career-head { flex-direction: column; gap: 0.2rem; }
+}

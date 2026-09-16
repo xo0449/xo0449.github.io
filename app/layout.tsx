@@ -4,8 +4,8 @@ import './globals.css'
 import Toc from './toc'
 
 export const metadata: Metadata = {
-  title: 'xo0449',
-  description: '백엔드 개발자의 기록',
+  title: '홍종혁 · 백엔드 개발자',
+  description: '커머스 백엔드 개발자. 임베디드와 통신을 거쳐 왔습니다.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -16,7 +16,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="site-header">
           <Link href="/">xo0449</Link>
           <nav className="nav-links">
+            <Link href="/posts">글</Link>
             <a href="https://xo0449.github.io/backend-lab/">backend-lab</a>
+            <a href="/#contact">Contact</a>
             <a href="https://github.com/xo0449">GitHub</a>
           </nav>
         </header>
