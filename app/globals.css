@@ -272,3 +272,34 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
   .stack-row { grid-template-columns: minmax(0, 1fr); gap: 0.2rem; }
   .career-head { flex-direction: column; gap: 0.2rem; }
 }
+
+/* 태그 필터 */
+.filters { display: flex; gap: 0.45rem; flex-wrap: wrap; margin-bottom: 1.6rem; }
+
+.filter {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.filter:hover { color: var(--fg); }
+.filter[data-active='true'] { color: var(--fg); border-color: var(--fg); }
+.filter-count { color: var(--muted); font-size: 0.75rem; margin-left: 0.15rem; }
+.filter[data-active='true'] .filter-count { color: var(--fg); }
+
+.tag-button {
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.75rem;
+  background: transparent;
+}
+
+.tag-button:hover { color: var(--fg); border-color: var(--muted); }
+.tag-button[data-active='true'] { color: var(--fg); border-color: var(--fg); }
+
+.post-item .tags { margin-top: 0.6rem; }

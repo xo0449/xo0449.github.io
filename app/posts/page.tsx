@@ -1,8 +1,8 @@
-import Link from 'next/link'
 import { loadPosts } from '../../lib/posts'
+import PostList from '../post-list'
 
 export default function Posts() {
-  const posts = loadPosts()
+  const posts = loadPosts().map(({ body, ...meta }) => meta)
 
   return (
     <>
@@ -12,23 +12,7 @@ export default function Posts() {
         코드로 재현해본 것은{' '}
         <a href="https://xo0449.github.io/backend-lab/">backend-lab</a>에 있습니다.
       </p>
-
-      <ul className="post-list">
-        {posts.map((p) => (
-          <li className="post-item" key={p.slug}>
-            <Link href={`/posts/${p.slug}`}>
-              <span className="post-date">{p.date}</span>
-              <h2>{p.title}</h2>
-              <p>{p.summary}</p>
-              <div className="tags">
-                {p.tags.map((t) => (
-                  <span className="tag" key={t}>{t}</span>
-                ))}
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <PostList posts={posts} />
     </>
   )
 }
