@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import type { PostMeta } from '../lib/posts'
+import { subtitleOf } from '../lib/series-title'
 
 type Entry =
   | { kind: 'post'; post: PostMeta }
@@ -136,7 +137,7 @@ export default function PostList({ posts }: { posts: PostMeta[] }) {
                     <li key={p.slug}>
                       <Link href={`/posts/${p.slug}`}>
                         <span className="series-part">{p.part}편</span>
-                        <span className="series-item-title">{p.title}</span>
+                        <span className="series-item-title">{subtitleOf(p.title, e.name)}</span>
                         <span className="series-item-summary">{p.summary}</span>
                       </Link>
                     </li>

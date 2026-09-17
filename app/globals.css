@@ -380,3 +380,15 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 
 .series-nav-links a span { color: var(--muted); font-size: 0.8rem; margin-right: 0.4rem; }
 .series-nav-links a:hover { text-decoration: underline; }
+
+.diagram {
+  margin: 1.8rem 0;
+  padding: 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  overflow-x: auto;
+  text-align: center;
+}
+
+.diagram svg { max-width: 100%; height: auto; }

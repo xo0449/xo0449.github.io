@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { marked } from 'marked'
 import { loadPost, loadPosts, seriesNav } from '../../../lib/posts'
+import { subtitleOf } from '../../../lib/series-title'
+import Mermaid from '../../mermaid'
 
 export function generateStaticParams() {
   return loadPosts().map((p) => ({ slug: p.slug }))
@@ -34,6 +36,7 @@ export default async function PostPage({
       </div>
 
       <article className="readme" dangerouslySetInnerHTML={{ __html: html }} />
+      <Mermaid />
 
       {series && (
         <nav className="series-nav" aria-label="시리즈 이동">
@@ -44,13 +47,13 @@ export default async function PostPage({
             {series.prev && (
               <Link href={`/posts/${series.prev.slug}`}>
                 <span>이전</span>
-                {series.prev.title}
+                {subtitleOf(series.prev.title, series.name)}
               </Link>
             )}
             {series.next && (
               <Link href={`/posts/${series.next.slug}`}>
                 <span>다음</span>
-                {series.next.title}
+                {subtitleOf(series.next.title, series.name)}
               </Link>
             )}
           </div>
