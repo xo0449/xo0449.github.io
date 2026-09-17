@@ -7,8 +7,6 @@ part: 2
 tags: [홈서버, Proxmox, 네트워크, 도메인]
 ---
 
-> 2024년 10월에 velog에 쓴 글을 옮겨왔습니다. 본문은 그때 그대로 두었습니다.
-
 ## 💿 Proxmox 설치
 우선 Proxmox이미지를 usb에 담아야 한다.
 [Proxmox Download Link](https://www.proxmox.com/en/downloads)
@@ -83,7 +81,7 @@ Route53 > 호스팅영역 > 해당 도메인 에서 위와 같이 도메인에 �
 
 ---
 
-## 옮기면서 다시 보니
+## 지금 다시 보니
 
 무선으로 붙이는 두 가지 방법을 **글로만 보고 버린 게 아니라 직접 만들어보고 버렸다.**
 
