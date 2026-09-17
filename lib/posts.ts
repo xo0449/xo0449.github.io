@@ -16,6 +16,10 @@ export interface PostMeta {
   sortKey: string
   summary: string
   tags: string[]
+  /** 이어지는 글이면 시리즈 이름. 목록에서 하나로 묶인다. */
+  series?: string
+  /** 시리즈 안의 순서. 1부터. */
+  part?: number
 }
 
 export interface Post extends PostMeta {
@@ -45,6 +49,8 @@ export function loadPosts(): Post[] {
         sortKey: toSortKey(data.date),
         summary: String(data.summary ?? ''),
         tags: (data.tags ?? []) as string[],
+        series: data.series ? String(data.series) : undefined,
+        part: data.part !== undefined ? Number(data.part) : undefined,
         body: content,
       }
     })
@@ -65,4 +71,31 @@ function toSortKey(value: unknown): string {
 
 export function loadPost(slug: string): Post | undefined {
   return loadPosts().find((p) => p.slug === slug)
+}
+
+export interface SeriesNav {
+  name: string
+  prev?: PostMeta
+  next?: PostMeta
+  all: PostMeta[]
+}
+
+/**
+ * 같은 시리즈의 앞뒤 글을 찾는다.
+ *
+ * 시리즈 안에서는 오름차순이다. 목록은 최신순이지만
+ * 시리즈는 1편부터 읽어야 한다.
+ */
+export function seriesNav(slug: string): SeriesNav | undefined {
+  const posts = loadPosts()
+  const current = posts.find((p) => p.slug === slug)
+  if (!current?.series) return undefined
+
+  const all = posts
+    .filter((p) => p.series === current.series)
+    .sort((a, b) => (a.part ?? 0) - (b.part ?? 0))
+    .map(({ body, ...meta }) => meta)
+
+  const i = all.findIndex((p) => p.slug === slug)
+  return { name: current.series, prev: all[i - 1], next: all[i + 1], all }
 }
