@@ -449,3 +449,13 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 }
 
 .ask-button-quiet:hover { border-color: var(--accent); }
+
+/* 옮겨온 글에는 직접 찍은 화면이 들어간다. 본문 폭을 넘지 않게 한다. */
+.readme img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.4rem auto;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
