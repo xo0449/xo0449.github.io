@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { marked } from 'marked'
 import { loadPost, loadPosts, seriesNav } from '../../../lib/posts'
 import { subtitleOf } from '../../../lib/series-title'
+import Ask from '../../ask'
 import Mermaid from '../../mermaid'
 
 export function generateStaticParams() {
@@ -59,6 +60,8 @@ export default async function PostPage({
           </div>
         </nav>
       )}
+
+      <Ask />
     </>
   )
 }
