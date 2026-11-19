@@ -590,6 +590,19 @@ footer { margin-top: 72px; color: var(--muted); font-size: 13px; }
     </div>
   </div>
   <div class="row side">
+    <div class="label">홈랩</div>
+    <div>
+      <p class="company"><mark>Proxmox 홈서버</mark><span class="co-desc">2024.10 ~ · 사이드 프로젝트 서버를 클라우드 대신 집에서</span></p>
+      <p class="meta">글: <a class="co-link" href="https://velog.io/@dreamjh/series/홈서버-구축기" target="_blank" rel="noopener">홈서버 구축기 ↗</a> · <a class="co-link" href="https://velog.io/@dreamjh/series/홈서버-활용기jenkins" target="_blank" rel="noopener">홈서버 활용기 ↗</a></p>
+      <ul style="margin-top:8px">
+        <li>사이드 프로젝트마다 월 1만~10만 원씩 나가던 AWS 비용이 당연한지 의문이 들어 시작. Proxmox로 NAS, 윈도우 PC, EC2를 대신할 개발용 리눅스 서버를 VM으로 나눠 운영</li>
+        <li>도메인을 붙여 외부에서 접속하게 한 뒤, 인증이 필요한 서버를 NGINX Proxy Manager 뒤로 모아 HTTPS 적용</li>
+        <li>Ubuntu + Docker에 Jenkins를 올리고, 파이프라인 스크립트를 GitHub로 버전 관리</li>
+        <li>지금은 뽀모야의 이벤트 수집 파이프라인(MinIO · DuckDB)이 이 홈서버에서 돌아갑니다</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row side">
     <div class="label">실험 기록</div>
     <div>
       <p class="company"><mark>backend-lab</mark><span class="co-desc">업무에서 마주친 문제를 재현하고 측정한 기록 20개</span></p>
