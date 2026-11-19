@@ -66,6 +66,14 @@
   table { width: 100%; border-collapse: collapse; font-size: 12.5px; line-height: 1.55; }
   th, td { border: 1px solid var(--line); padding: 6px 9px; text-align: left; vertical-align: top; }
   th { background: var(--soft); font-weight: 700; }
+
+  .intro { margin-top: 14px; color: var(--ink); max-width: 720px; }
+  .intro + .intro { margin-top: 6px; }
+  .toc { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; margin-top: 18px; font-size: 13px; font-weight: 600; }
+  .toc a { text-decoration: none; color: var(--sub); }
+  .toc a:hover { color: var(--accent); }
+  .toc button { margin-left: auto; font: inherit; font-size: 12.5px; color: #fff; background: var(--accent); border: 0; border-radius: 6px; padding: 6px 12px; cursor: pointer; }
+  h2[id] { scroll-margin-top: 16px; }
   @page { size: A4; margin: 16mm 14mm 18mm;
     @bottom-right { content: counter(page) " / " counter(pages); font: 600 10px Pretendard, sans-serif; color: #1f2328; }
   }
@@ -85,6 +93,7 @@
     .fig, .board, table, ol.steps { break-inside: avoid; }
     table { font-size: 10px; }
     .page-break-hr { display: none; }
+    .toc { display: none; }
   }
   @media (max-width: 640px) {
     .doc { padding: 32px 16px 56px; }
@@ -92,6 +101,7 @@
     .skills .row { grid-template-columns: 1fr; gap: 2px; }
     .skills .c { border: 0; padding: 0; }
     .box div, .careers div { grid-template-columns: 1fr; gap: 0; }
+    .toc button { margin-left: 0; }
   }
 </style>
 </head>
@@ -100,7 +110,13 @@
 
   <header>
     <div class="role">Back-End Developer</div>
-    <div class="name"><h1>홍종혁 Hong Jong-Hyuk</h1><span>규칙과 예외가 많은 도메인을 하나의 흐름으로 정리하는 개발자입니다.</span></div>
+    <div class="name"><h1>홍종혁 Hong Jong-Hyuk</h1><span>경력 3년 9개월 · 통신 · 결제 · 메시징 · 데이터 파이프라인</span></div>
+    <p class="intro">통신·결제처럼 규칙과 예외가 많은 도메인에서 여러 외부 파트너의 서로 다른 조건을 하나의 흐름으로 정리해 온 백엔드 개발자입니다. 휴대폰 개통 신청, 메시지 발송, 데이터 파이프라인, 외부 연동을 설계부터 운영까지 맡고 있습니다.</p>
+    <p class="intro">문제를 그 자리에서 고치고 끝내기보다, 왜 그렇게 됐는지 한 번 더 들여다보는 것을 좋아합니다. 장애나 설계 고민이 생기면 회사 코드 밖에서 같은 상황을 작게 재현하고 측정해 다른 방법과 비교하고, 그 기록 20개를 <a href="https://xo0449.github.io/backend-lab/">backend-lab</a>에 쌓고 있습니다.</p>
+    <nav class="toc">
+      <a href="#skills">SKILLS</a><a href="#projects">PROJECTS</a><a href="#side">SIDE-PROJECTS</a><a href="#careers">CAREERS</a>
+      <button type="button" onclick="window.print()">PDF로 저장</button>
+    </nav>
   </header>
 
   <hr>
@@ -118,7 +134,7 @@
 
   <hr>
 
-  <section class="skills">
+  <section class="skills" id="skills">
     <h2>SKILLS</h2>
     <div class="row"><div class="k">NestJS · TypeScript</div><div class="c">Backend</div>
       <ul class="dot"><li>도메인 계층을 분리한 API 서버를 설계하고, 레거시(Node + Handlebars) 기능을 대조하며 이관했습니다.</li><li>여러 서비스가 같은 계약을 쓰도록 발송 요청 SDK를 패키지로 배포했습니다.</li><li>TypeORM, Jest</li></ul></div>
@@ -139,12 +155,13 @@
   <hr class="page-break-hr">
 
   <section>
-    <h2 class="page-break">PROJECTS</h2>
+    <h2 class="page-break" id="projects">PROJECTS</h2>
 
     <article class="proj">
       <div class="p-head"><h3>멀티채널 메시지 발송 시스템</h3><span class="when">2026.09 ~ 2026.10</span></div>
       <p class="p-desc">Vinu Labs 학생 복지 스토어 에브리유니즈(MAU 약 57만)의 문자·알림톡·이메일을 하나의 요청 형식으로 보내는 공통 발송 시스템입니다.</p>
       <dl class="box">
+        <div><dt>소속</dt><dd>Vinu Labs</dd></div>
         <div><dt>역할</dt><dd>설계 · 구현</dd></div>
         <div><dt>기술 스택</dt><dd>NestJS, MySQL, SQS, BullMQ, Valkey, NHN Cloud</dd></div>
       </dl>
@@ -354,8 +371,9 @@
       <div class="p-head"><h3>휴대폰 개통 신청(MNO) 내재화</h3><span class="when">2025.03 ~ 현재</span></div>
       <p class="p-desc">외부 중계업체 링크로만 넘기던 휴대폰 상품을 자체 신청 서비스로 옮긴 프로젝트입니다.</p>
       <dl class="box">
+        <div><dt>소속</dt><dd>Vinu Labs</dd></div>
         <div><dt>역할</dt><dd>설계 주도 · 백엔드, 운영 어드민, 배치 구현</dd></div>
-        <div><dt>기술 스택</dt><dd>NestJS, MySQL, AWS</dd></div>
+        <div><dt>기술 스택</dt><dd>NestJS, MySQL, AWS · 신청 상태 흐름과 감사 로그, 판매처 엑셀 일괄 업로드, 보존 기간별 파기 배치</dd></div>
         <div><dt>링크</dt><dd><a href="https://univstore.com">univstore.com</a></dd></div>
       </dl>
       <p class="lbl">[ 신청 흐름 ]</p>
@@ -423,6 +441,7 @@
       <div class="p-head"><h3>이벤트 파이프라인 · Snowflake 적재</h3><span class="when">2026.05 ~ 현재</span></div>
       <p class="p-desc">사용자 행동 이벤트와 운영 DB 변경분을 분석 환경으로 모으는 데이터 파이프라인입니다.</p>
       <dl class="box">
+        <div><dt>소속</dt><dd>Vinu Labs</dd></div>
         <div><dt>역할</dt><dd>설계 · 구축</dd></div>
         <div><dt>기술 스택</dt><dd>Kinesis, Firehose, S3(Parquet), Athena, AWS DMS(CDC), Snowflake, dbt</dd></div>
       </dl>
@@ -620,6 +639,7 @@
       <div class="p-head"><h3>SSO · 외부 연동 · 결제 동시성</h3><span class="when">2026</span></div>
       <p class="p-desc">외부 앱 로그인 연동과 상품 공급사 연동, 결제 시 재고 경합 처리를 맡았습니다.</p>
       <dl class="box">
+        <div><dt>소속</dt><dd>Vinu Labs</dd></div>
         <div><dt>역할</dt><dd>백엔드 · 연동 프론트 구현</dd></div>
         <div><dt>기술 스택</dt><dd>NestJS, MySQL, OAuth 2.0(PKCE)</dd></div>
       </dl>
@@ -648,6 +668,7 @@
       <div class="p-head"><h3>운영 장애 대응 · 보안</h3><span class="when">상시</span></div>
       <p class="p-desc">운영 알람과 문의의 원인을 찾아 고치고, 보안 패치와 ISMS-P 점검에 대응합니다.</p>
       <dl class="box">
+        <div><dt>소속</dt><dd>Vinu Labs</dd></div>
         <div><dt>역할</dt><dd>담당</dd></div>
         <div><dt>기술 스택</dt><dd>AWS ALB, CloudWatch, VPC Flow Logs, nginx</dd></div>
       </dl>
@@ -673,6 +694,7 @@
       <div class="p-head"><h3>GRIDA</h3><span class="when">2024.01 ~ 2024.04</span></div>
       <p class="p-desc">WoodangNetwork의 동물 실험 대행 신청 서비스와 관리자 페이지입니다. 인프라부터 백엔드까지 설계하고 개발했습니다.</p>
       <dl class="box">
+        <div><dt>소속</dt><dd>WoodangNetwork</dd></div>
         <div><dt>역할</dt><dd>인프라 · 백엔드 총괄 (Backend 100%, Infra 100%)</dd></div>
         <div><dt>기술 스택</dt><dd>NestJS, Prisma, MySQL, GraphQL, AWS(EC2, VPC, ELB, Route 53, S3, ACM), Jenkins, Docker, Nginx, OpenVPN</dd></div>
       </dl>
@@ -690,6 +712,7 @@
       <div class="p-head"><h3>해듭 HAEDEUP</h3><span class="when">2024.06 ~ 2024.08</span></div>
       <p class="p-desc">WoodangNetwork의 AI 피부 분석 서비스입니다. 피부 설문과 분석 리포트 발송을 제공합니다.</p>
       <dl class="box">
+        <div><dt>소속</dt><dd>WoodangNetwork</dd></div>
         <div><dt>역할</dt><dd>Backend</dd></div>
         <div><dt>기술 스택</dt><dd>NestJS, GraphQL, Prisma, MySQL</dd></div>
       </dl>
@@ -704,6 +727,7 @@
       <div class="p-head"><h3>슬레이어 키우기</h3><span class="when">2023.04 ~ 2023.07</span></div>
       <p class="p-desc">GearSecond의 방치형 모바일 게임입니다(Google Play).</p>
       <dl class="box">
+        <div><dt>소속</dt><dd>GearSecond</dd></div>
         <div><dt>역할</dt><dd>게임 서버 · 배포 인프라</dd></div>
         <div><dt>기술 스택</dt><dd>.NET, Jenkins, Docker, Terraform, AWS EKS, Helm</dd></div>
         <div><dt>링크</dt><dd><a href="https://play.google.com/store/apps/details?id=com.gear2.growslayer&amp;hl=ko">Google Play</a></dd></div>
@@ -720,6 +744,7 @@
       <div class="p-head"><h3>LG유플러스 5G 과금 서버(CMF)</h3><span class="when">2021.10 ~ 2022.03</span></div>
       <p class="p-desc">AriaTech에서 과금 요청이 몰리는 시즌에 대비해 과금 서버의 가용성과 처리량을 개선한 과제입니다.</p>
       <dl class="box">
+        <div><dt>소속</dt><dd>AriaTech</dd></div>
         <div><dt>역할</dt><dd>이중화 · 부하 테스트</dd></div>
         <div><dt>기술 스택</dt><dd>Java, Kafka, nGrinder</dd></div>
       </dl>
@@ -735,7 +760,7 @@
   <hr>
 
   <section>
-    <h2>SIDE-PROJECTS</h2>
+    <h2 id="side">SIDE-PROJECTS</h2>
 
     <article class="proj keep">
       <div class="p-head"><h3>뽀모야 Pomoya</h3><span class="when">운영 중</span></div>
@@ -780,7 +805,7 @@
 
   <hr>
 
-  <section class="careers">
+  <section class="careers" id="careers">
     <h2>CAREERS</h2>
     <div><span class="when">2025.03 ~ 재직 중</span><span>Vinu Labs - 백엔드 · 인프라</span></div>
     <div><span class="when">2023.10 ~ 2024.11</span><span>WoodangNetwork - 백엔드</span></div>
