@@ -129,6 +129,7 @@ mark { background: var(--mark); color: inherit; padding: 1px 4px; border-radius:
 .infobox div { display: grid; grid-template-columns: 84px 1fr; gap: 12px; padding: 3px 0; align-items: center; }
 .infobox dt { font-weight: 700; color: var(--strong); }
 .infobox dd { margin: 0; color: var(--sub); }
+.case-body > .infobox:first-child { margin-top: 4px; margin-bottom: 18px; }
 .infobox .stores { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; }
 @media (max-width: 640px) { .infobox div { grid-template-columns: 1fr; gap: 2px; } }
 .co-link { color: var(--strong); font-weight: 600; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
@@ -237,7 +238,7 @@ footer { margin-top: 72px; color: var(--muted); font-size: 13px; }
   
 <details class="case" id="case-01">
   <summary><span class="case-no">01</span><span class="case-t">휴대폰 개통 신청(MNO) 내재화<small>외부 링크 상품을 자체 신청 서비스로, 단통법 폐지 대응과 레거시 이관</small></span></summary>
-  <div class="case-body"><div class="byline">Vinu Labs (<a class="blink" href="https://www.univstore.com/">univstore.com</a>) · 2025.03 ~ 현재 · 설계를 주도하고 백엔드, 운영 어드민, 배치를 구현</div>
+  <div class="case-body"><dl class="infobox"><div><dt>소속</dt><dd>Vinu Labs (<a class="co-link" href="https://www.univstore.com/" target="_blank" rel="noopener">univstore.com ↗</a>)</dd></div><div><dt>기간</dt><dd>2025.03 ~ 현재</dd></div><div><dt>역할</dt><dd>설계를 주도하고 백엔드, 운영 어드민, 배치를 구현</dd></div><div><dt>기술 스택</dt><dd>NestJS, MySQL, AWS · 신청 상태 흐름과 감사 로그, 판매처 엑셀 일괄 업로드, 보존 기간별 파기 배치</dd></div></dl>
 
   <h3>배경</h3>
   <p>제가 맡기 전까지 휴대폰은 제휴 상품이었습니다. 고객이 누르면 중계업체 사이트로 넘어가는 외부 링크였고, 그 뒤로는 우리가 볼 수 있는 게 없었습니다. 고객이 정말 우리 사이트를 거쳐 개통했는지 확인할 방법이 없었고, 매달 중계업체가 보내 주는 결과를 그대로 믿을 수밖에 없었습니다.</p>
@@ -311,7 +312,7 @@ footer { margin-top: 72px; color: var(--muted); font-size: 13px; }
 </details>
 <details class="case" id="case-02">
   <summary><span class="case-no">02</span><span class="case-t">멀티채널 메시지 발송 시스템<small>SQS + BullMQ, 전용 DB 분리, 아웃박스와 멱등</small></span></summary>
-  <div class="case-body"><div class="byline">Vinu Labs (<a class="blink" href="https://www.univstore.com/">univstore.com</a>) · 2026.09 ~ 10 · 설계 및 구현</div>
+  <div class="case-body"><dl class="infobox"><div><dt>소속</dt><dd>Vinu Labs (<a class="co-link" href="https://www.univstore.com/" target="_blank" rel="noopener">univstore.com ↗</a>)</dd></div><div><dt>기간</dt><dd>2026.09 ~ 2026.10</dd></div><div><dt>역할</dt><dd>설계 및 구현</dd></div><div><dt>기술 스택</dt><dd>NestJS, MySQL, SQS, BullMQ, Valkey, NHN Cloud</dd></div></dl>
 
   <h3>배경</h3>
   <p>고객에게 가는 알림은 주문·배송·인증·CS·재입고 같은 정보성 안내부터 마케팅까지 전부 문자(SMS/LMS)로 나가고 있었습니다. 2026년 상반기에만 132만 건, 약 3,200만 원이었습니다. 대량 발송은 Lambda가 수신자 목록을 청크로 잘라 큐에 넣는 방식이었고, 중계사를 부르는 코드는 서비스 여러 곳에 흩어져 있었습니다.</p>
@@ -536,7 +537,7 @@ footer { margin-top: 72px; color: var(--muted); font-size: 13px; }
 </details>
 <details class="case" id="case-03">
   <summary><span class="case-no">03</span><span class="case-t">이벤트 파이프라인과 Snowflake 적재<small>Kinesis 수집, DMS CDC 무중단 교체, dbt</small></span></summary>
-  <div class="case-body"><div class="byline">Vinu Labs (<a class="blink" href="https://www.univstore.com/">univstore.com</a>) · 2026.05 ~ · 설계 및 구축</div>
+  <div class="case-body"><dl class="infobox"><div><dt>소속</dt><dd>Vinu Labs (<a class="co-link" href="https://www.univstore.com/" target="_blank" rel="noopener">univstore.com ↗</a>)</dd></div><div><dt>기간</dt><dd>2026.05 ~ 현재</dd></div><div><dt>역할</dt><dd>설계 및 구축</dd></div><div><dt>기술 스택</dt><dd>Kinesis, Firehose, S3(Parquet), Athena, AWS DMS(CDC), Snowflake, dbt</dd></div></dl>
 
   <h3>배경</h3>
   <p>사용자 행동 로그는 레거시 웹 서버가 Firehose로 보내 Redshift에 주기적으로 적재하는 구조였습니다. 이벤트 정의가 서버, 프론트, 분석 쪽에 흩어져 있어 같은 행동을 서로 다르게 기록했고, 새 프론트를 만들면서 이벤트를 SDK 하나로 모으고 수집 경로도 새로 짜기로 했습니다.</p>
@@ -746,7 +747,7 @@ footer { margin-top: 72px; color: var(--muted); font-size: 13px; }
 </details>
 <details class="case" id="case-04">
   <summary><span class="case-no">04</span><span class="case-t">에브리타임 · 대학백과 SSO와 외부 연동<small>웹뷰 SSO, PKCE, 다우기술 교환권 예외 처리</small></span></summary>
-  <div class="case-body"><div class="byline">Vinu Labs (<a class="blink" href="https://www.univstore.com/">univstore.com</a>) · 2026 · 백엔드와 연동 프론트 구현</div>
+  <div class="case-body"><dl class="infobox"><div><dt>소속</dt><dd>Vinu Labs (<a class="co-link" href="https://www.univstore.com/" target="_blank" rel="noopener">univstore.com ↗</a>)</dd></div><div><dt>기간</dt><dd>2026</dd></div><div><dt>역할</dt><dd>백엔드와 연동 프론트 구현</dd></div><div><dt>기술 스택</dt><dd>NestJS, MySQL, OAuth 2.0(PKCE)</dd></div></dl>
 
   <h3>에브리타임 웹뷰 자동 로그인</h3>
   <p>우리 쇼핑 화면은 에브리타임 앱 안의 웹뷰로도 열립니다. 이 경로에서는 로그인 화면 없이 항상 자동으로 로그인돼야 하는데, 2026년 6월 웹 전체를 새 프론트로 옮기면서 이 동작을 다시 만들어야 했습니다.</p>
@@ -778,7 +779,7 @@ footer { margin-top: 72px; color: var(--muted); font-size: 13px; }
 </details>
 <details class="case" id="case-05">
   <summary><span class="case-no">05</span><span class="case-t">운영 이슈 대응과 보안<small>nginx 패치, 장애 원인 분석, ISMS-P</small></span></summary>
-  <div class="case-body"><div class="byline">Vinu Labs (<a class="blink" href="https://www.univstore.com/">univstore.com</a>) · 상시 · 운영 이슈 감시와 대응, 보안 패치, ISMS-P 대응 담당</div>
+  <div class="case-body"><dl class="infobox"><div><dt>소속</dt><dd>Vinu Labs (<a class="co-link" href="https://www.univstore.com/" target="_blank" rel="noopener">univstore.com ↗</a>)</dd></div><div><dt>기간</dt><dd>상시</dd></div><div><dt>역할</dt><dd>운영 이슈 감시와 대응, 보안 패치, ISMS-P 대응 담당</dd></div><div><dt>기술 스택</dt><dd>AWS ALB, CloudWatch, VPC Flow Logs, nginx</dd></div></dl>
 
   <h3>하는 일</h3>
   <p>기능 개발과 별개로, 운영에서 올라오는 알람과 문의를 살피고 원인을 찾아 고치는 일을 맡고 있습니다. 보안 취약점이 공개되면 우리 서버에 해당하는지 확인해 패치하고, 매년 ISMS-P 취약점 점검에 맞춰 점검 환경과 조치를 준비합니다. 아래는 최근 석 달 동안 처리한 건입니다.</p>
@@ -800,7 +801,7 @@ footer { margin-top: 72px; color: var(--muted); font-size: 13px; }
 </details>
 <details class="case" id="case-06">
   <summary><span class="case-no">06</span><span class="case-t">동물 실험 대행 서비스 GRIDA<small>VPC 설계, OpenVPN, 무중단 배포, API 150개</small></span></summary>
-  <div class="case-body"><div class="byline">WoodangNetwork · 2024.01 ~ 2024.04 · 인프라와 백엔드 총괄 (Backend 100%, Infra 100%)</div>
+  <div class="case-body"><dl class="infobox"><div><dt>소속</dt><dd>WoodangNetwork</dd></div><div><dt>기간</dt><dd>2024.01 ~ 2024.04</dd></div><div><dt>역할</dt><dd>인프라와 백엔드 총괄 (Backend 100%, Infra 100%)</dd></div><div><dt>기술 스택</dt><dd>NestJS, Prisma, MySQL, GraphQL, AWS(EC2, VPC, ELB, Route 53, S3, ACM), Jenkins, Docker, Nginx, OpenVPN</dd></div></dl>
 
   <h3>맡은 일</h3>
   <p>동물 실험 대행을 신청하는 사용자 서비스와 관리자 페이지의 인프라와 백엔드를 처음부터 맡았습니다. 전체 시스템 아키텍처를 설계하고, AWS 인프라와 결제 시스템까지 구축해 3개월 만에 출시했습니다.</p>
