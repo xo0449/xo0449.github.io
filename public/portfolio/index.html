@@ -828,11 +828,18 @@ footer { margin-top: 72px; color: var(--muted); font-size: 13px; }
     <div>
       <p class="company"><mark>뽀모야 Pomoya</mark><span class="co-desc">집중할수록 자라는 픽셀 펫과 함께하는 뽀모도로 타이머</span></p>
       <p class="meta">서비스: <a class="co-link" href="https://www.pomoya.page/" target="_blank" rel="noopener">pomoya.page ↗</a></p>
-      <p class="meta">플랫폼: <b>iPhone · iPad · Mac(App Store), Android(Google Play), Windows</b></p>
+      <p class="meta">플랫폼: <b>iPhone · iPad · Mac(App Store), Android(Google Play), Windows, 터미널</b></p>
+      <p class="meta">기술: <b>NestJS, MySQL, Redis(BullMQ · Pub/Sub · Streams), WebSocket, MinIO, DuckDB, Docker Compose, GitHub Actions · 앱: TypeScript 공통 엔진, Tauri, Swift, Expo</b></p>
+      <p class="meta">설계 글: <a class="co-link" href="https://xo0449.github.io/posts/2026-10-06-pomoya-architecture/" target="_blank" rel="noopener">뽀모야 아키텍처 설계 ↗</a></p>
       <ul style="margin-top:8px">
-        <li>계정 서버(로그인 · 세이브), 모바일 앱(iOS · Android), 데스크톱 앱(Windows는 Tauri, Mac은 Swift)을 하나의 계정으로 연결</li>
-        <li>이벤트 수집 파이프라인을 홈서버에서 운영(수집기 · 배치 writer · MinIO · DuckDB). 회사에서 쓰는 AWS 구성과 짝이 맞게 설계</li>
-        <li>Homebrew 탭과 winget으로 데스크톱 앱 배포</li>
+        <li>기기는 행동만 보내고 서버가 판정합니다. 앱의 TypeScript 규칙 엔진을 서버가 하위 모듈로 그대로 가져와 돌려, Windows·Mac·폰·터미널 어디서 써도 같은 결과로 캐릭터와 기록이 이어집니다.</li>
+        <li>판정과 같은 트랜잭션에서 outbox를 쓰고 BullMQ 큐(판정 이벤트·후속 작업·통계·배치)로 넘깁니다. 판정(api)과 후속 처리(job)는 프로세스를 나눴고, 큐에 못 넣은 것은 job이 1분마다 다시 줍습니다.</li>
+        <li>다른 기기의 변경은 Redis Pub/Sub로 바로 알리고 Streams로 놓친 것부터 이어 받아 WebSocket으로 밀어 줍니다. 순서는 version으로 가립니다.</li>
+        <li>시간이 만드는 변화(배고픔 등)는 저장하지 않고 계산하고 난수는 행동 ID에서 뽑아, 연결이 끊겨도 앱이 혼자 진행하다 다시 닿으면 서버와 맞춥니다.</li>
+        <li>구글·애플 로그인은 브라우저에서 하고, 앱이 만든 verifier의 지문과 60초 일회용 티켓으로 앱에 세션을 넘깁니다. 토큰은 DB에 해시만 둡니다.</li>
+        <li>익명 통계는 api가 계정 정보를 빼고 큐에 넣으면 job이 수집기로 넘기고, 1분마다 MinIO에 원본 청크로 쌓아 DuckDB로 대시보드와 슬랙 리포트를 만듭니다.</li>
+        <li>AWS 이관을 생각하고 아키텍처를 구성했습니다. 지금은 홈서버의 Docker Compose로 운영하지만 MySQL은 RDS, Redis는 ElastiCache, MinIO는 S3, DuckDB는 Athena, 컨테이너는 ECS로 그대로 옮길 수 있는 부품만 골랐습니다.</li>
+        <li>앱 안 업데이트(SHA-256 대조), Homebrew·winget 배포, 앱 출시 없이 가격·보상을 바꾸는 관리자 화면을 만들었습니다.</li>
       </ul>
     </div>
   </div>
