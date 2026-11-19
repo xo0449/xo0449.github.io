@@ -124,6 +124,16 @@ mark { background: var(--mark); color: inherit; padding: 1px 4px; border-radius:
 .co-link { color: var(--strong); font-weight: 600; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
 .badges { display: flex; flex-wrap: wrap; gap: 6px; }
 .badge { height: 22px; display: block; border-radius: 3px; }
+.board { background: #0d1117; border-radius: 12px; padding: 10px; margin: 20px 0 8px; position: relative; cursor: zoom-in; }
+.board::after { content: "눌러서 크게 보기 ⤢"; position: absolute; right: 12px; bottom: 10px; font-size: 11px; color: #8b949e;
+  background: rgba(22,27,34,.85); border: 1px solid #30363d; border-radius: 6px; padding: 2px 8px; }
+@media (min-width: 1100px) { .case-body .board { margin-left: -100px; margin-right: -140px; } }
+.board.full { position: fixed; inset: 0; z-index: 50; margin: 0 !important; border-radius: 0; padding: 3vh 3vw;
+  display: flex; align-items: center; justify-content: center; cursor: zoom-out; background: rgba(13,17,23,.97); }
+.board.full svg { max-height: 94vh; width: auto; max-width: 94vw; }
+.board.full::after { content: "닫기 ✕"; top: 16px; bottom: auto; right: 20px; font-size: 13px; }
+.board svg { display: block; width: 100%; height: auto; }
+@media (prefers-reduced-motion: reduce) { .board .pkt { display: none; } }
 footer { margin-top: 72px; color: var(--muted); font-size: 13px; }
 .theme { position: fixed; right: 20px; bottom: 20px; width: 38px; height: 38px; border-radius: 8px; border: 1px solid var(--line);
          background: var(--bg); color: var(--sub); cursor: pointer; font-size: 17px; }
@@ -335,99 +345,169 @@ footer { margin-top: 72px; color: var(--muted); font-size: 13px; }
   
 
 <h3>구조</h3>
-  <div class="fig" style="padding:10px 8px 6px">
-    <svg viewBox="0 0 640 286" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans KR, sans-serif">
-      <defs>
-        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0,0L10,5L0,10z" fill="#444"/></marker>
-        <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0,0L10,5L0,10z" fill="#0e9f6e"/></marker>
-        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0,0L10,5L0,10z" fill="#c0392b"/></marker>
-      </defs>
+  <div class="board"><svg viewBox="0 0 960 560" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, sans-serif">
+  <defs>
+    <pattern id="g1" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#1c222b"/></pattern>
+    <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#6e7681"/></marker>
+    <marker id="a1g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#3fb950"/></marker>
+    <marker id="a1r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#f85149"/></marker>
+    <filter id="glow1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="960" height="560" fill="url(#g1)"/>
+  <text x="24" y="30" font-size="12" font-weight="700" fill="#8b949e" letter-spacing="2">MESSAGE DELIVERY SYSTEM</text>
+  <text x="936" y="30" font-size="11" fill="#6e7681" text-anchor="end">문자 · LMS · 알림톡 · 브랜드메시지 · 이메일을 하나의 요청 계약으로</text>
 
-      
-      <rect x="6" y="30" width="122" height="248" rx="10" fill="#f5f6f7"/>
-      <text x="67" y="20" text-anchor="middle" font-size="10.5" font-weight="700" fill="#333">요청하는 서비스</text>
-      <rect x="250" y="30" width="262" height="248" rx="10" fill="#eef8f3" stroke="#0e9f6e" stroke-dasharray="5 4"/>
-      <text x="381" y="20" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0b7a55">메시지 시스템 · 별도 레포, 전용 DB</text>
-      <text x="580" y="20" text-anchor="middle" font-size="10.5" font-weight="700" fill="#333">중계사</text>
+  <!-- 영역 -->
+  <g font-size="10" font-weight="700" letter-spacing="1.5">
+    <rect x="20" y="52" width="176" height="388" rx="12" fill="#11161d" stroke="#30363d"/>
+    <text x="34" y="72" fill="#8b949e">PRODUCERS</text>
+    <rect x="346" y="52" width="432" height="388" rx="12" fill="#0d1f17" stroke="#238636" stroke-dasharray="6 5"/>
+    <text x="360" y="72" fill="#3fb950">MESSAGE SYSTEM</text>
+    <text x="764" y="72" fill="#3fb950" text-anchor="end" font-weight="500" letter-spacing="0">ECS Fargate · 앱별 1 → 4 오토스케일 · 전용 DB</text>
+    <rect x="796" y="52" width="144" height="388" rx="12" fill="#11161d" stroke="#30363d"/>
+    <text x="810" y="72" fill="#8b949e">PROVIDER</text>
+  </g>
 
-      
-      <g font-size="9.5" text-anchor="middle" fill="#333">
-        <rect x="16" y="48" width="102" height="92" rx="7" fill="#fff" stroke="#d0d4d8"/>
-        <text x="67" y="66" font-weight="700" font-size="10">즉시 발송</text>
-        <text x="67" y="84">고객 앱</text><text x="67" y="98">판매처 관리 화면</text><text x="67" y="112">운영 어드민</text><text x="67" y="126">제휴 API</text>
-        <rect x="16" y="152" width="102" height="48" rx="7" fill="#fff" stroke="#d0d4d8"/>
-        <text x="67" y="171" font-weight="700" font-size="10">배치</text>
-        <text x="67" y="187">대량·예약, 500건씩</text>
-        <rect x="16" y="212" width="102" height="54" rx="7" fill="#fff" stroke="#d0d4d8"/>
-        <text x="67" y="232" font-weight="700" font-size="10">결과 수신</text>
-        <text x="67" y="248">수신자별 성공·실패</text>
-      </g>
+  <!-- 생산자 -->
+  <g>
+    <rect x="34" y="88" width="148" height="82" rx="8" fill="#161b22" stroke="#30363d"/>
+    <text x="46" y="108" font-size="12.5" font-weight="700" fill="#e6edf3">즉시 발송</text>
+    <text x="46" y="126" font-size="10.5" fill="#8b949e">고객 앱 · 판매처 관리</text>
+    <text x="46" y="141" font-size="10.5" fill="#8b949e">운영 어드민 · 제휴 API</text>
+    <rect x="46" y="149" width="104" height="15" rx="3" fill="#1f2937"/><text x="52" y="160" font-size="9" fill="#58a6ff" font-family="Menlo, monospace">sdk.sendMessage()</text>
 
-      
-      <g text-anchor="middle">
-        <rect x="150" y="92" width="80" height="40" rx="20" fill="#fff" stroke="#0e9f6e" stroke-width="1.5"/>
-        <text x="190" y="109" font-size="10" font-weight="700" fill="#0b7a55">SQS</text>
-        <text x="190" y="123" font-size="8.5" fill="#555">발송 요청</text>
-        <rect x="150" y="219" width="80" height="40" rx="20" fill="#fff" stroke="#0e9f6e" stroke-width="1.5"/>
-        <text x="190" y="236" font-size="10" font-weight="700" fill="#0b7a55">SQS</text>
-        <text x="190" y="250" font-size="8.5" fill="#555">발송 결과</text>
-      </g>
-      <line x1="118" y1="100" x2="148" y2="108" stroke="#444" marker-end="url(#ar)"/>
-      <line x1="118" y1="174" x2="148" y2="120" stroke="#444" marker-end="url(#ar)"/>
-      <line x1="150" y1="239" x2="120" y2="239" stroke="#0e9f6e" stroke-width="1.5" marker-end="url(#ag)"/>
-      <text x="140" y="146" font-size="8.5" fill="#666" text-anchor="middle">SDK</text>
+    <rect x="34" y="184" width="148" height="66" rx="8" fill="#161b22" stroke="#30363d"/>
+    <text x="46" y="204" font-size="12.5" font-weight="700" fill="#e6edf3">배치 (job)</text>
+    <text x="46" y="222" font-size="10.5" fill="#8b949e">예약 · 대량 발송</text>
+    <text x="46" y="238" font-size="10.5" fill="#8b949e">500명씩 나눠 요청</text>
 
-      
-      <g text-anchor="middle">
-        <rect x="264" y="84" width="104" height="56" rx="8" fill="#111"/>
-        <text x="316" y="106" font-size="10.5" font-weight="700" fill="#fff">service</text>
-        <text x="316" y="122" font-size="8.5" fill="#bbb">200명 단위로 분할</text>
-        <text x="316" y="133" font-size="8.5" fill="#bbb">결과 확정</text>
-        <rect x="398" y="84" width="104" height="56" rx="8" fill="#111"/>
-        <text x="450" y="106" font-size="10.5" font-weight="700" fill="#fff">processor</text>
-        <text x="450" y="122" font-size="8.5" fill="#bbb">중계사 호출</text>
-        <text x="450" y="133" font-size="8.5" fill="#bbb">중계사별 어댑터</text>
-        <rect x="398" y="196" width="104" height="56" rx="8" fill="#111"/>
-        <text x="450" y="218" font-size="10.5" font-weight="700" fill="#fff">webhook</text>
-        <text x="450" y="234" font-size="8.5" fill="#bbb">서명 검증만</text>
-        <text x="450" y="245" font-size="8.5" fill="#bbb">DB 접근 없음</text>
-        
-        <path d="M274 200 v36 a42 8 0 0 0 84 0 v-36" fill="#fff" stroke="#999"/>
-        <ellipse cx="316" cy="200" rx="42" ry="8" fill="#fff" stroke="#999"/>
-        <text x="316" y="225" font-size="10" font-weight="700" fill="#333">MySQL</text>
-        <text x="316" y="239" font-size="8.5" fill="#666">수신자별 상태</text>
-      </g>
-      <line x1="230" y1="112" x2="262" y2="112" stroke="#0e9f6e" stroke-width="1.5" marker-end="url(#ag)"/>
-      <line x1="368" y1="104" x2="396" y2="104" stroke="#444" marker-end="url(#ar)"/>
-      <text x="382" y="97" font-size="8" fill="#666" text-anchor="middle">BullMQ</text>
-      <path d="M420 140 C 420 160, 380 160, 360 141" fill="none" stroke="#c0392b" stroke-dasharray="3 3" marker-end="url(#arr)"/>
-      <text x="398" y="168" font-size="8" fill="#c0392b" text-anchor="middle">요청 실패</text>
-      <path d="M398 216 C 376 216, 364 176, 352 143" fill="none" stroke="#444" marker-end="url(#ar)"/>
-      <text x="378" y="196" font-size="8" fill="#666" text-anchor="middle">BullMQ</text>
-      <line x1="316" y1="140" x2="316" y2="190" stroke="#999" stroke-dasharray="2 3"/>
-      <path d="M270 140 C 250 170, 240 200, 232 230" fill="none" stroke="#0e9f6e" stroke-width="1.5" marker-end="url(#ag)"/>
+    <rect x="34" y="276" width="148" height="72" rx="8" fill="#161b22" stroke="#30363d"/>
+    <text x="46" y="296" font-size="12.5" font-weight="700" fill="#e6edf3">아웃박스</text>
+    <text x="46" y="314" font-size="10.5" fill="#8b949e">요청 행 먼저 기록 → 발송</text>
+    <text x="46" y="330" font-size="10.5" fill="#8b949e">남은 PENDING 1분마다 재발송</text>
 
-      
-      <g text-anchor="middle">
-        <rect x="532" y="84" width="96" height="56" rx="8" fill="#fff" stroke="#111" stroke-width="1.3"/>
-        <text x="580" y="108" font-size="10.5" font-weight="700" fill="#111">NHN Cloud</text>
-        <text x="580" y="124" font-size="8.5" fill="#666">문자 · 알림톡</text>
-        <text x="580" y="156" font-size="8.5" fill="#666">초당 800명까지</text><text x="580" y="169" font-size="8.5" fill="#666">→ 고객 휴대폰</text>
-      </g>
-      <line x1="502" y1="112" x2="530" y2="112" stroke="#444" marker-end="url(#ar)"/>
-            <path d="M600 140 L 600 224 L 504 224" fill="none" stroke="#444" marker-end="url(#ar)"/>
-      <text x="558" y="218" font-size="8.5" fill="#666" text-anchor="middle">결과 콜백</text>
+    <rect x="34" y="362" width="148" height="66" rx="8" fill="#161b22" stroke="#30363d"/>
+    <text x="46" y="382" font-size="12.5" font-weight="700" fill="#e6edf3">결과 반영 (job)</text>
+    <text x="46" y="400" font-size="10.5" fill="#8b949e">기능별 핸들러로 라우팅</text>
+    <text x="46" y="416" font-size="10.5" fill="#8b949e">SENT → SUCCESS / FAILED</text>
+  </g>
 
-      
-      <g font-size="9" font-weight="700" text-anchor="middle" fill="#fff">
-        <circle cx="134" cy="84" r="8" fill="#0e9f6e"/><text x="134" y="87.5">1</text>
-        <circle cx="382" cy="70" r="8" fill="#0e9f6e"/><text x="382" y="73.5">2</text>
-        <circle cx="516" cy="132" r="8" fill="#0e9f6e"/><text x="516" y="135.5">3</text>
-        <circle cx="616" cy="182" r="8" fill="#0e9f6e"/><text x="616" y="185.5">4</text>
-        <circle cx="244" cy="176" r="8" fill="#0e9f6e"/><text x="244" y="179.5">5</text>
-      </g>
-    <circle class="flow" r="4.2" fill="#0e9f6e" opacity="0"><animateMotion dur="6s" begin="0s" repeatCount="indefinite" path="M118 100 L148 108 L190 112 L262 112 L316 112 L396 104 L450 108 L530 112 L600 140 L600 224 L504 224 L450 224 L398 216 L352 143 L316 140 L270 140 L232 230 L190 239 L120 239" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#0e9f6e" opacity="0"><animateMotion dur="6s" begin="0s" repeatCount="indefinite" path="M118 100 L148 108 L190 112 L262 112 L316 112 L396 104 L450 108 L530 112 L600 140 L600 224 L504 224 L450 224 L398 216 L352 143 L316 140 L270 140 L232 230 L190 239 L120 239"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle><circle class="flow" r="4.2" fill="#0e9f6e" opacity="0"><animateMotion dur="6s" begin="2s" repeatCount="indefinite" path="M118 174 L148 120 L190 112 L262 112 L316 112 L396 104 L450 108 L530 112 L600 140 L600 224 L504 224 L450 224 L398 216 L352 143 L316 140 L270 140 L232 230 L190 239 L120 239" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="6s" begin="2s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#0e9f6e" opacity="0"><animateMotion dur="6s" begin="2s" repeatCount="indefinite" path="M118 174 L148 120 L190 112 L262 112 L316 112 L396 104 L450 108 L530 112 L600 140 L600 224 L504 224 L450 224 L398 216 L352 143 L316 140 L270 140 L232 230 L190 239 L120 239"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="6s" begin="2s" repeatCount="indefinite"/></circle><circle class="flow" r="4.2" fill="#0e9f6e" opacity="0"><animateMotion dur="6s" begin="4s" repeatCount="indefinite" path="M118 100 L148 108 L190 112 L262 112 L316 112 L396 104 L450 108 L530 112 L600 140 L600 224 L504 224 L450 224 L398 216 L352 143 L316 140 L270 140 L232 230 L190 239 L120 239" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="6s" begin="4s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#0e9f6e" opacity="0"><animateMotion dur="6s" begin="4s" repeatCount="indefinite" path="M118 100 L148 108 L190 112 L262 112 L316 112 L396 104 L450 108 L530 112 L600 140 L600 224 L504 224 L450 224 L398 216 L352 143 L316 140 L270 140 L232 230 L190 239 L120 239"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="6s" begin="4s" repeatCount="indefinite"/></circle></svg>
-  </div>
+  <!-- SQS -->
+  <g>
+    <rect x="218" y="146" width="108" height="60" rx="30" fill="#1a1408" stroke="#f0883e" stroke-width="1.5"/>
+    <text x="272" y="170" font-size="12" font-weight="800" fill="#f0883e" text-anchor="middle">Amazon SQS</text>
+    <text x="272" y="186" font-size="9.5" fill="#c9a26b" text-anchor="middle" font-family="Menlo, monospace">message-request</text>
+    <text x="272" y="198" font-size="8.5" fill="#8b949e" text-anchor="middle">at-least-once · DLQ</text>
+    <rect x="218" y="352" width="108" height="60" rx="30" fill="#1a1408" stroke="#f0883e" stroke-width="1.5"/>
+    <text x="272" y="376" font-size="12" font-weight="800" fill="#f0883e" text-anchor="middle">Amazon SQS</text>
+    <text x="272" y="392" font-size="9.5" fill="#c9a26b" text-anchor="middle" font-family="Menlo, monospace">message-result</text>
+    <text x="272" y="404" font-size="8.5" fill="#8b949e" text-anchor="middle">수신자별 최종 결과</text>
+  </g>
+
+  <!-- 메시지 시스템 내부 -->
+  <g>
+    <rect x="362" y="96" width="164" height="112" rx="10" fill="#161b22" stroke="#3fb950" stroke-width="1.4"/>
+    <text x="376" y="118" font-size="13" font-weight="800" fill="#e6edf3">message-service</text>
+    <text x="376" y="138" font-size="10.5" fill="#8b949e">수신 · 멱등 확인</text>
+    <text x="376" y="154" font-size="10.5" fill="#8b949e">수신자 200명 단위로 분할</text>
+    <text x="376" y="170" font-size="10.5" fill="#8b949e">결과 확정 · 발행</text>
+    <rect x="376" y="182" width="136" height="16" rx="3" fill="#0d2818"/><text x="382" y="194" font-size="8.8" fill="#3fb950" font-family="Menlo, monospace">UNIQUE(service, requestId)</text>
+
+    <rect x="556" y="96" width="206" height="54" rx="10" fill="#1d1012" stroke="#f85149" stroke-width="1.2"/>
+    <text x="570" y="116" font-size="12.5" font-weight="800" fill="#ff7b72">Valkey · BullMQ</text>
+    <g font-size="8.8" font-family="Menlo, monospace">
+      <rect x="570" y="125" width="44" height="15" rx="3" fill="#2d1517"/><text x="575" y="136" fill="#ffa198">normal</text>
+      <rect x="618" y="125" width="44" height="15" rx="3" fill="#2d1517"/><text x="623" y="136" fill="#ffa198">urgent</text>
+      <rect x="666" y="125" width="44" height="15" rx="3" fill="#2d1517"/><text x="671" y="136" fill="#ffa198">result</text>
+    </g>
+
+    <rect x="596" y="176" width="166" height="96" rx="10" fill="#161b22" stroke="#3fb950" stroke-width="1.4"/>
+    <text x="610" y="198" font-size="13" font-weight="800" fill="#e6edf3">message-processor</text>
+    <text x="610" y="218" font-size="10.5" fill="#8b949e">중계사별 어댑터</text>
+    <text x="610" y="234" font-size="10.5" fill="#8b949e">요청당 1,000명 이하로 묶음</text>
+    <rect x="610" y="244" width="140" height="18" rx="3" fill="#0d2818"/><text x="616" y="257" font-size="9.5" fill="#3fb950" font-weight="700">4 jobs/s × 200 = 800명/s</text>
+
+    <rect x="596" y="316" width="166" height="92" rx="10" fill="#161b22" stroke="#3fb950" stroke-width="1.4"/>
+    <text x="610" y="338" font-size="13" font-weight="800" fill="#e6edf3">message-webhook</text>
+    <text x="610" y="358" font-size="10.5" fill="#8b949e">ALB · 중계사 서명 검증</text>
+    <text x="610" y="374" font-size="10.5" fill="#8b949e">DB에 접근하지 않음</text>
+    <text x="610" y="390" font-size="10.5" fill="#8b949e">콜백 폭주 → 큐가 흡수</text>
+
+    <path d="M376 318 v62 a68 12 0 0 0 136 0 v-62" fill="#161b22" stroke="#58a6ff" stroke-width="1.3"/>
+    <ellipse cx="444" cy="318" rx="68" ry="12" fill="#1b2433" stroke="#58a6ff" stroke-width="1.3"/>
+    <text x="444" y="350" font-size="12.5" font-weight="800" fill="#79c0ff" text-anchor="middle">MySQL (전용)</text>
+    <text x="444" y="368" font-size="9.5" fill="#8b949e" text-anchor="middle" font-family="Menlo, monospace">message_history</text>
+    <text x="444" y="382" font-size="9.5" fill="#8b949e" text-anchor="middle" font-family="Menlo, monospace">message_result</text>
+    <text x="444" y="418" font-size="9" fill="#6e7681" text-anchor="middle">수신자별 상태 · 실제 채널</text>
+  </g>
+
+  <!-- 중계사 -->
+  <g>
+    <rect x="810" y="176" width="116" height="96" rx="10" fill="#161b22" stroke="#bc8cff" stroke-width="1.4"/>
+    <text x="868" y="200" font-size="13" font-weight="800" fill="#d2a8ff" text-anchor="middle">NHN Cloud</text>
+    <text x="868" y="220" font-size="10" fill="#8b949e" text-anchor="middle">SMS · LMS</text>
+    <text x="868" y="235" font-size="10" fill="#8b949e" text-anchor="middle">알림톡 · 브랜드메시지</text>
+    <text x="868" y="256" font-size="9" fill="#6e7681" text-anchor="middle">실패 시 문자로 대체 발송</text>
+    <rect x="822" y="330" width="92" height="64" rx="14" fill="#161b22" stroke="#30363d"/>
+    <rect x="852" y="340" width="32" height="44" rx="6" fill="none" stroke="#8b949e" stroke-width="1.4"/>
+    <text x="868" y="410" font-size="10" fill="#8b949e" text-anchor="middle">고객</text>
+  </g>
+
+  <!-- 연결선 -->
+  <g fill="none" stroke="#6e7681" stroke-width="1.4">
+    <path d="M182 130 C 200 130, 200 166, 216 166" marker-end="url(#a1)"/>
+    <path d="M182 216 C 200 216, 200 190, 216 190" marker-end="url(#a1)"/>
+    <path d="M326 176 L 360 160" marker-end="url(#a1)"/>
+    <path d="M526 130 L 554 124" marker-end="url(#a1)"/>
+    <path d="M680 150 L 680 174" marker-end="url(#a1)"/>
+    <path d="M762 224 L 808 224" marker-end="url(#a1)"/>
+    <path d="M868 272 L 868 328" marker-end="url(#a1)"/>
+    <path d="M820 262 C 800 300, 790 330, 764 350" stroke="#bc8cff" stroke-dasharray="5 4" marker-end="url(#a1)"/>
+    <path d="M596 338 C 560 330, 560 170, 528 170" marker-end="url(#a1)"/>
+    <path d="M596 238 C 570 238, 560 200, 528 196" stroke="#f85149" stroke-dasharray="4 3" marker-end="url(#a1r)"/>
+    <path d="M444 208 L 444 304" stroke="#58a6ff" stroke-dasharray="2 3"/>
+    <path d="M362 200 C 330 260, 300 320, 290 350" stroke="#3fb950" marker-end="url(#a1g)"/>
+    <path d="M218 382 L 184 392" stroke="#3fb950" marker-end="url(#a1g)"/>
+    <path d="M108 276 L 108 252" stroke="#3fb950" stroke-dasharray="3 3"/>
+  </g>
+  <g font-size="9.5" fill="#8b949e">
+    <text x="806" y="300" fill="#bc8cff">결과 콜백</text><text x="806" y="313" fill="#bc8cff">(재전송)</text>
+    <text x="540" y="226" fill="#f85149">요청 실패</text>
+    <text x="456" y="262" fill="#58a6ff">기록</text>
+    <text x="300" y="276" fill="#3fb950">결과</text>
+  </g>
+
+  <!-- 흐르는 패킷 -->
+  <g class="pkt" filter="url(#glow1)">
+    <circle r="4.5" cx="-50" cy="-50" fill="#3fb950"><animateMotion dur="7s" repeatCount="indefinite" path="M182 130 C 200 130, 200 166, 216 166 L 272 176 L 326 176 L 360 160 L 444 150 L 526 130 L 554 124 L 650 124 L 680 150 L 680 224 L 762 224 L 808 224 L 868 224 L 868 272 L 868 328 L 868 300 L 820 262 C 800 300, 790 330, 764 350 L 680 360 L 596 338 C 560 330, 560 170, 528 170 L 444 170 L 362 200 C 330 260, 300 320, 290 350 L 272 382 L 218 382 L 184 392"/></circle>
+    <circle r="4.5" cx="-50" cy="-50" fill="#3fb950"><animateMotion dur="7s" begin="2.3s" repeatCount="indefinite" path="M182 216 C 200 216, 200 190, 216 190 L 272 176 L 326 176 L 360 160 L 444 150 L 526 130 L 554 124 L 650 124 L 680 150 L 680 224 L 762 224 L 808 224 L 868 224 L 868 272 L 868 328 L 868 300 L 820 262 C 800 300, 790 330, 764 350 L 680 360 L 596 338 C 560 330, 560 170, 528 170 L 444 170 L 362 200 C 330 260, 300 320, 290 350 L 272 382 L 218 382 L 184 392"/></circle>
+    <circle r="4.5" cx="-50" cy="-50" fill="#58a6ff"><animateMotion dur="7s" begin="4.6s" repeatCount="indefinite" path="M182 130 C 200 130, 200 166, 216 166 L 272 176 L 326 176 L 360 160 L 444 150 L 526 130 L 554 124 L 650 124 L 680 150 L 680 224 L 762 224 L 808 224 L 868 224 L 868 272 L 868 328 L 868 300 L 820 262 C 800 300, 790 330, 764 350 L 680 360 L 596 338 C 560 330, 560 170, 528 170 L 444 170 L 362 200 C 330 260, 300 320, 290 350 L 272 382 L 218 382 L 184 392"/></circle>
+  </g>
+
+  <!-- 수치 -->
+  <g>
+    <g transform="translate(20,460)">
+      <rect width="222" height="78" rx="10" fill="#161b22" stroke="#30363d"/>
+      <text x="16" y="32" font-size="22" font-weight="800" fill="#e6edf3">20만 명 / 20분</text>
+      <text x="16" y="56" font-size="11" fill="#8b949e">캠페인 1회 처리 설계 기준</text>
+    </g>
+    <g transform="translate(259,460)">
+      <rect width="222" height="78" rx="10" fill="#161b22" stroke="#30363d"/>
+      <text x="16" y="32" font-size="22" font-weight="800" fill="#3fb950">800명 / 초</text>
+      <text x="16" y="56" font-size="11" fill="#8b949e">중계사 한도 안의 발송 속도</text>
+    </g>
+    <g transform="translate(498,460)">
+      <rect width="222" height="78" rx="10" fill="#161b22" stroke="#30363d"/>
+      <text x="16" y="32" font-size="22" font-weight="800" fill="#e6edf3">4.5만 건 / 2분</text>
+      <text x="16" y="56" font-size="11" fill="#8b949e">dev 실측 · 3채널 · CPU 피크 49%</text>
+    </g>
+    <g transform="translate(737,460)">
+      <rect width="203" height="78" rx="10" fill="#161b22" stroke="#30363d"/>
+      <text x="16" y="32" font-size="22" font-weight="800" fill="#79c0ff">24.5 → 3.8원</text>
+      <text x="16" y="56" font-size="11" fill="#8b949e">정보성 건당 단가 (알림톡 전환)</text>
+    </g>
+  </g>
+</svg></div>
   <ol class="steps">
     <li>서비스는 SDK로 발송 요청을 SQS에 넣습니다. 대량·예약 발송은 배치가 500건씩 나눠 넣습니다.</li>
     <li>service가 요청을 받아 이력을 남기고, 수신자 200명 단위 잡으로 나눠 BullMQ에 넣습니다.</li>
@@ -460,49 +540,177 @@ footer { margin-top: 72px; color: var(--muted); font-size: 13px; }
   <h3>배경</h3>
   <p>사용자 행동 로그는 레거시 웹 서버가 Firehose로 보내 Redshift에 주기적으로 적재하는 구조였습니다. 이벤트 정의가 서버, 프론트, 분석 쪽에 흩어져 있어 같은 행동을 서로 다르게 기록했고, 새 프론트를 만들면서 이벤트를 SDK 하나로 모으고 수집 경로도 새로 짜기로 했습니다.</p>
 
-  <div class="fig" style="padding:10px 8px 6px">
-    <svg viewBox="0 0 640 214" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans KR, sans-serif">
-      <defs>
-        <marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0,0L10,5L0,10z" fill="#444"/></marker>
-        <marker id="pg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0,0L10,5L0,10z" fill="#0e9f6e"/></marker>
-      </defs>
-      <text x="8" y="16" font-size="10" font-weight="700" fill="#333">행동 이벤트</text>
-      <text x="8" y="146" font-size="10" font-weight="700" fill="#0b7a55">운영 DB 변경 (CDC)</text>
-      <g text-anchor="middle">
-        <rect x="8" y="26" width="92" height="36" rx="7" fill="#f5f6f7" stroke="#d0d4d8"/><text x="54" y="42" font-size="9.5" font-weight="700">브라우저 SDK</text><text x="54" y="55" font-size="8" fill="#666">20건 또는 5초 배치</text>
-        <rect x="8" y="76" width="92" height="36" rx="7" fill="#f5f6f7" stroke="#d0d4d8"/><text x="54" y="92" font-size="9.5" font-weight="700">서버 SDK</text><text x="54" y="105" font-size="8" fill="#666">API · 운영 어드민</text>
-        <rect x="122" y="26" width="84" height="36" rx="7" fill="#111"/><text x="164" y="42" font-size="9.5" font-weight="700" fill="#fff">event-api</text><text x="164" y="55" font-size="8" fill="#bbb">1차 검증만</text>
-        <rect x="230" y="40" width="88" height="56" rx="7" fill="#111"/><text x="274" y="62" font-size="10" font-weight="700" fill="#fff">Kinesis</text><text x="274" y="76" font-size="8" fill="#bbb">7일 보관</text><text x="274" y="87" font-size="8" fill="#bbb">버퍼</text>
-        <rect x="342" y="40" width="80" height="56" rx="7" fill="#111"/><text x="382" y="66" font-size="10" font-weight="700" fill="#fff">Firehose</text><text x="382" y="80" font-size="8" fill="#bbb">변환·배치</text>
-        <rect x="446" y="26" width="86" height="36" rx="7" fill="#fff" stroke="#999"/><text x="489" y="42" font-size="9" font-weight="700">S3 Parquet</text><text x="489" y="55" font-size="8" fill="#666">분석용</text>
-        <rect x="446" y="74" width="86" height="36" rx="7" fill="#fff" stroke="#999"/><text x="489" y="90" font-size="9" font-weight="700">S3 JSON</text><text x="489" y="103" font-size="8" fill="#666">재처리용 원본</text>
-        <rect x="554" y="14" width="80" height="30" rx="7" fill="#fff" stroke="#999"/><text x="594" y="33" font-size="9">Athena · Tableau</text>
-        
-        <rect x="8" y="156" width="92" height="40" rx="7" fill="#fff" stroke="#0e9f6e"/><text x="54" y="173" font-size="9.5" font-weight="700">운영 Aurora</text><text x="54" y="187" font-size="8" fill="#666">binlog</text>
-        <rect x="140" y="156" width="110" height="40" rx="7" fill="#0e9f6e"/><text x="195" y="173" font-size="9.5" font-weight="700" fill="#fff">DMS CDC 태스크</text><text x="195" y="187" font-size="8" fill="#e3f5ee">주문 · 회원 · 상품 · 카탈로그</text>
-        <rect x="290" y="156" width="80" height="40" rx="7" fill="#fff" stroke="#0e9f6e"/><text x="330" y="180" font-size="9">S3</text>
-        <rect x="446" y="140" width="188" height="64" rx="9" fill="#eef8f3" stroke="#0e9f6e" stroke-width="1.5"/><text x="540" y="162" font-size="11" font-weight="700" fill="#0b7a55">Snowflake</text><text x="540" y="178" font-size="8.5" fill="#333">dbt: raw → staging → publish</text><text x="540" y="192" font-size="8.5" fill="#333">매시 증분 빌드 · LLM 상품 분류</text>
-      </g>
-      <g stroke="#444" fill="none">
-        <line x1="100" y1="44" x2="120" y2="44" marker-end="url(#pa)"/>
-        <path d="M206 44 L 218 44 L 218 58 L 228 58" marker-end="url(#pa)"/>
-        <path d="M100 94 L 218 94 L 218 80 L 228 80" marker-end="url(#pa)"/>
-        <line x1="318" y1="68" x2="340" y2="68" marker-end="url(#pa)"/>
-        <path d="M422 60 L 434 60 L 434 44 L 444 44" marker-end="url(#pa)"/>
-        <path d="M422 76 L 434 76 L 434 92 L 444 92" marker-end="url(#pa)"/>
-        <line x1="532" y1="38" x2="552" y2="32" marker-end="url(#pa)"/>
-      </g>
-      <g stroke="#0e9f6e" stroke-width="1.5" fill="none">
-        <path d="M520 62 C 545 90, 545 110, 540 138" marker-end="url(#pg)"/>
-        <line x1="100" y1="176" x2="138" y2="176" marker-end="url(#pg)"/>
-        <line x1="250" y1="176" x2="288" y2="176" marker-end="url(#pg)"/>
-        <line x1="370" y1="176" x2="444" y2="176" marker-end="url(#pg)"/>
-      </g>
-      <text x="566" y="118" font-size="8" fill="#0b7a55">매시 증분</text>
-      <text x="407" y="170" font-size="8" fill="#0b7a55" text-anchor="middle">실시간 변경분</text>
-    <circle class="flow" r="4.2" fill="#337ea9" opacity="0"><animateMotion dur="4.5s" begin="0s" repeatCount="indefinite" path="M100 44 L120 44 L206 44 L218 44 L218 58 L228 58 L274 68 L318 68 L340 68 L382 68 L422 60 L434 44 L444 44 L489 44 L520 62 C 545 90, 545 110, 540 138" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="4.5s" begin="0s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#337ea9" opacity="0"><animateMotion dur="4.5s" begin="0s" repeatCount="indefinite" path="M100 44 L120 44 L206 44 L218 44 L218 58 L228 58 L274 68 L318 68 L340 68 L382 68 L422 60 L434 44 L444 44 L489 44 L520 62 C 545 90, 545 110, 540 138"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="4.5s" begin="0s" repeatCount="indefinite"/></circle><circle class="flow" r="4.2" fill="#337ea9" opacity="0"><animateMotion dur="4s" begin="1.5s" repeatCount="indefinite" path="M100 94 L218 94 L218 80 L228 80 L274 68 L318 68 L340 68 L382 68 L422 76 L434 92 L444 92 L489 92" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="4s" begin="1.5s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#337ea9" opacity="0"><animateMotion dur="4s" begin="1.5s" repeatCount="indefinite" path="M100 94 L218 94 L218 80 L228 80 L274 68 L318 68 L340 68 L382 68 L422 76 L434 92 L444 92 L489 92"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="4s" begin="1.5s" repeatCount="indefinite"/></circle><circle class="flow" r="4.2" fill="#0e9f6e" opacity="0"><animateMotion dur="3.5s" begin="0.8s" repeatCount="indefinite" path="M100 176 L138 176 L195 176 L250 176 L288 176 L330 176 L370 176 L444 176 L540 176" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="3.5s" begin="0.8s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#0e9f6e" opacity="0"><animateMotion dur="3.5s" begin="0.8s" repeatCount="indefinite" path="M100 176 L138 176 L195 176 L250 176 L288 176 L330 176 L370 176 L444 176 L540 176"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="3.5s" begin="0.8s" repeatCount="indefinite"/></circle><circle class="flow" r="4.2" fill="#0e9f6e" opacity="0"><animateMotion dur="3.5s" begin="2.55s" repeatCount="indefinite" path="M100 176 L138 176 L195 176 L250 176 L288 176 L330 176 L370 176 L444 176 L540 176" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="3.5s" begin="2.55s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#0e9f6e" opacity="0"><animateMotion dur="3.5s" begin="2.55s" repeatCount="indefinite" path="M100 176 L138 176 L195 176 L250 176 L288 176 L330 176 L370 176 L444 176 L540 176"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="3.5s" begin="2.55s" repeatCount="indefinite"/></circle></svg>
-    <div class="cap">위는 행동 이벤트 수집 경로, 아래 초록은 운영 DB 변경분(CDC) 적재 경로입니다.</div>
-  </div>
+  <div class="board"><svg viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, sans-serif">
+  <defs>
+    <pattern id="g2" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#1c222b"/></pattern>
+    <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#6e7681"/></marker>
+    <marker id="a2b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#58a6ff"/></marker>
+    <marker id="a2g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#3fb950"/></marker>
+    <filter id="glow2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="960" height="600" fill="url(#g2)"/>
+  <text x="24" y="30" font-size="12" font-weight="700" fill="#8b949e" letter-spacing="2">EVENT &amp; CDC PIPELINE</text>
+  <text x="936" y="30" font-size="11" fill="#6e7681" text-anchor="end">S3까지는 안정적으로 쌓고, 분석은 Snowflake가 가져간다</text>
+
+  <!-- 레인 -->
+  <g font-size="10" font-weight="700" letter-spacing="1.5">
+    <rect x="20" y="48" width="920" height="232" rx="12" fill="#0e1620" stroke="#1f6feb" stroke-dasharray="6 5"/>
+    <text x="34" y="68" fill="#58a6ff">BEHAVIOR EVENTS · 하루 약 164만 건</text>
+    <rect x="20" y="300" width="920" height="186" rx="12" fill="#0d1f17" stroke="#238636" stroke-dasharray="6 5"/>
+    <text x="34" y="320" fill="#3fb950">OPERATIONAL DB CHANGES · CDC</text>
+  </g>
+
+  <!-- 이벤트 레인 -->
+  <g>
+    <rect x="36" y="84" width="128" height="62" rx="8" fill="#161b22" stroke="#30363d"/>
+    <text x="48" y="104" font-size="12" font-weight="700" fill="#e6edf3">브라우저 SDK</text>
+    <text x="48" y="121" font-size="10" fill="#8b949e">20건 또는 5초 배치</text>
+    <text x="48" y="136" font-size="10" fill="#8b949e">전체의 96.7%</text>
+    <rect x="36" y="168" width="128" height="62" rx="8" fill="#161b22" stroke="#30363d"/>
+    <text x="48" y="188" font-size="12" font-weight="700" fill="#e6edf3">서버 SDK</text>
+    <text x="48" y="205" font-size="10" fill="#8b949e">API · 운영 어드민</text>
+    <text x="48" y="220" font-size="10" fill="#8b949e">Kinesis에 직접 기록</text>
+
+    <rect x="190" y="84" width="122" height="62" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="1.3"/>
+    <text x="202" y="104" font-size="12" font-weight="800" fill="#e6edf3">event-api</text>
+    <text x="202" y="121" font-size="10" fill="#8b949e">ECS · API 서버와 분리</text>
+    <text x="202" y="136" font-size="10" fill="#8b949e">1차 검증만, 서버 시각</text>
+
+    <rect x="340" y="106" width="130" height="102" rx="10" fill="#1a1408" stroke="#f0883e" stroke-width="1.5"/>
+    <text x="405" y="130" font-size="13" font-weight="800" fill="#f0883e" text-anchor="middle">Kinesis</text>
+    <text x="405" y="148" font-size="10" fill="#c9a26b" text-anchor="middle">Data Stream · 1 shard</text>
+    <text x="405" y="164" font-size="10" fill="#c9a26b" text-anchor="middle">7일 보관 (유실 방지)</text>
+    <rect x="356" y="174" width="98" height="22" rx="4" fill="#2a1d0c"/><text x="405" y="189" font-size="10" fill="#f0883e" text-anchor="middle" font-weight="700">피크 사용률 4.2%</text>
+
+    <rect x="498" y="106" width="124" height="102" rx="10" fill="#1a1408" stroke="#f0883e" stroke-width="1.5"/>
+    <text x="560" y="130" font-size="13" font-weight="800" fill="#f0883e" text-anchor="middle">Firehose</text>
+    <text x="560" y="148" font-size="10" fill="#c9a26b" text-anchor="middle">Parquet 변환</text>
+    <text x="560" y="164" font-size="10" fill="#c9a26b" text-anchor="middle">64MB 또는 300초</text>
+    <text x="560" y="186" font-size="9.5" fill="#8b949e" text-anchor="middle">원본 JSON 60초</text>
+
+    <rect x="652" y="80" width="136" height="186" rx="10" fill="#0f1a10" stroke="#56d364" stroke-width="1.3"/>
+    <text x="720" y="102" font-size="13" font-weight="800" fill="#7ee787" text-anchor="middle">S3</text>
+    <g font-size="9.5" font-family="Menlo, monospace">
+      <rect x="664" y="114" width="112" height="44" rx="5" fill="#13261a"/>
+      <text x="672" y="131" fill="#7ee787">processed/</text>
+      <text x="672" y="148" fill="#8b949e" font-family="Pretendard, sans-serif">Parquet · 180일→Glacier</text>
+      <rect x="664" y="164" width="112" height="44" rx="5" fill="#13261a"/>
+      <text x="672" y="181" fill="#7ee787">raw/</text>
+      <text x="672" y="198" fill="#8b949e" font-family="Pretendard, sans-serif">JSON · 재처리용 보험</text>
+      <rect x="664" y="214" width="112" height="40" rx="5" fill="#13261a"/>
+      <text x="672" y="231" fill="#7ee787">errors/</text>
+      <text x="672" y="246" fill="#8b949e" font-family="Pretendard, sans-serif">실패분 · 60일</text>
+    </g>
+
+    <rect x="814" y="84" width="112" height="58" rx="8" fill="#161b22" stroke="#30363d"/>
+    <text x="870" y="106" font-size="11.5" font-weight="700" fill="#e6edf3" text-anchor="middle">Athena · Spectrum</text>
+    <text x="870" y="124" font-size="9.5" fill="#8b949e" text-anchor="middle">적재 없이 바로 조회</text>
+    <rect x="814" y="156" width="112" height="40" rx="8" fill="#161b22" stroke="#30363d"/>
+    <text x="870" y="180" font-size="11.5" font-weight="700" fill="#e6edf3" text-anchor="middle">Tableau</text>
+  </g>
+
+  <!-- CDC 레인 -->
+  <g>
+    <path d="M40 350 v70 a62 11 0 0 0 124 0 v-70" fill="#161b22" stroke="#58a6ff" stroke-width="1.3"/>
+    <ellipse cx="102" cy="350" rx="62" ry="11" fill="#1b2433" stroke="#58a6ff" stroke-width="1.3"/>
+    <text x="102" y="384" font-size="12" font-weight="800" fill="#79c0ff" text-anchor="middle">운영 Aurora</text>
+    <text x="102" y="401" font-size="9.5" fill="#8b949e" text-anchor="middle">binlog ROW · full</text>
+    <text x="102" y="415" font-size="9.5" fill="#8b949e" text-anchor="middle">72시간 보관</text>
+
+    <rect x="196" y="338" width="196" height="108" rx="10" fill="#1a1408" stroke="#f0883e" stroke-width="1.5"/>
+    <text x="210" y="360" font-size="13" font-weight="800" fill="#f0883e">AWS DMS · CDC</text>
+    <g font-size="9.5" font-family="Menlo, monospace">
+      <rect x="210" y="370" width="78" height="18" rx="4" fill="#2a1d0c"/><text x="217" y="383" fill="#f0b072">order-v2</text>
+      <rect x="296" y="370" width="82" height="18" rx="4" fill="#2a1d0c"/><text x="303" y="383" fill="#f0b072">user</text>
+      <rect x="210" y="394" width="78" height="18" rx="4" fill="#2a1d0c"/><text x="217" y="407" fill="#f0b072">item</text>
+      <rect x="296" y="394" width="82" height="18" rx="4" fill="#2a1d0c"/><text x="303" y="407" fill="#f0b072">catalog ★</text>
+    </g>
+    <text x="210" y="432" font-size="9.5" fill="#8b949e">태스크별 CDC 지연 알람</text>
+
+    <rect x="420" y="358" width="100" height="66" rx="10" fill="#0f1a10" stroke="#56d364" stroke-width="1.3"/>
+    <text x="470" y="384" font-size="12.5" font-weight="800" fill="#7ee787" text-anchor="middle">S3</text>
+    <text x="470" y="402" font-size="9.5" fill="#8b949e" text-anchor="middle">CDC 변경분</text>
+  </g>
+
+  <!-- Snowflake -->
+  <g>
+    <rect x="548" y="294" width="378" height="184" rx="12" fill="#0c1d2b" stroke="#29b5e8" stroke-width="1.6"/>
+    <text x="566" y="318" font-size="14" font-weight="800" fill="#29b5e8">❄ Snowflake</text>
+    <text x="912" y="318" font-size="10" fill="#8b949e" text-anchor="end">dbt 모델링</text>
+    <g font-size="11" font-weight="700">
+      <rect x="566" y="334" width="96" height="58" rx="8" fill="#10283a" stroke="#1f6f99"/>
+      <text x="614" y="358" fill="#e6edf3" text-anchor="middle">raw</text>
+      <text x="614" y="376" font-size="9" font-weight="400" fill="#8b949e" text-anchor="middle">이벤트 · CDC 원본</text>
+      <rect x="690" y="334" width="104" height="58" rx="8" fill="#10283a" stroke="#1f6f99"/>
+      <text x="742" y="356" fill="#e6edf3" text-anchor="middle">staging</text>
+      <text x="742" y="372" font-size="9" font-weight="400" fill="#8b949e" text-anchor="middle">_DB_ 최신 1행</text>
+      <text x="742" y="385" font-size="9" font-weight="400" fill="#8b949e" text-anchor="middle">_CDC_ 변경 이력</text>
+      <rect x="822" y="334" width="90" height="58" rx="8" fill="#10283a" stroke="#1f6f99"/>
+      <text x="867" y="358" fill="#e6edf3" text-anchor="middle">publish</text>
+      <text x="867" y="376" font-size="9" font-weight="400" fill="#8b949e" text-anchor="middle">분석·리포트</text>
+    </g>
+    <g font-size="9.5">
+      <rect x="566" y="408" width="166" height="56" rx="8" fill="#0f2233" stroke="#30363d"/>
+      <text x="578" y="428" fill="#79c0ff" font-weight="700" font-family="Menlo, monospace">HOURLY_BUILD  :05</text>
+      <text x="578" y="446" fill="#8b949e">매시 증분 적재 · 모델 185개</text>
+      <rect x="744" y="408" width="168" height="56" rx="8" fill="#0f2233" stroke="#30363d"/>
+      <text x="756" y="428" fill="#d2a8ff" font-weight="700" font-family="Menlo, monospace">ITEM_CLASS  :35</text>
+      <text x="756" y="446" fill="#8b949e">LLM 상품 분류 · 별도 태스크로 격리</text>
+    </g>
+  </g>
+
+  <!-- 연결선 -->
+  <g fill="none" stroke="#6e7681" stroke-width="1.4">
+    <path d="M164 115 L 188 115" marker-end="url(#a2)"/>
+    <path d="M312 115 C 326 115, 326 140, 338 140" marker-end="url(#a2)"/>
+    <path d="M164 199 C 260 199, 300 185, 338 178" marker-end="url(#a2)"/>
+    <path d="M470 157 L 496 157" marker-end="url(#a2)"/>
+    <path d="M622 140 L 662 136" marker-end="url(#a2)"/>
+    <path d="M622 172 L 662 186" marker-end="url(#a2)"/>
+    <path d="M788 120 L 812 114" marker-end="url(#a2)"/>
+    <path d="M870 142 L 870 154" marker-end="url(#a2)"/>
+    <path d="M720 266 C 720 300, 640 300, 614 332" stroke="#58a6ff" marker-end="url(#a2b)"/>
+    <path d="M164 390 L 194 390" stroke="#3fb950" marker-end="url(#a2g)"/>
+    <path d="M392 391 L 418 391" stroke="#3fb950" marker-end="url(#a2g)"/>
+    <path d="M520 380 C 540 380, 545 365, 564 363" stroke="#3fb950" marker-end="url(#a2g)"/>
+    <path d="M662 363 L 688 363" stroke="#29b5e8" marker-end="url(#a2b)"/>
+    <path d="M794 363 L 820 363" stroke="#29b5e8" marker-end="url(#a2b)"/>
+  </g>
+  <text x="730" y="286" font-size="9.5" fill="#58a6ff">매시 :05 증분</text>
+
+  <!-- 패킷 -->
+  <g class="pkt" filter="url(#glow2)">
+    <circle r="4.5" cx="-50" cy="-50" fill="#58a6ff"><animateMotion dur="5s" repeatCount="indefinite" path="M100 115 L 164 115 L 188 115 L 251 115 L 312 115 C 326 115, 326 140, 338 140 L 405 157 L 470 157 L 496 157 L 560 157 L 622 140 L 662 136 L 720 136 L 720 266 C 720 300, 640 300, 614 332 L 614 363 L 742 363 L 867 363"/></circle>
+    <circle r="4.5" cx="-50" cy="-50" fill="#58a6ff"><animateMotion dur="5s" begin="1.7s" repeatCount="indefinite" path="M100 115 L 164 115 L 188 115 L 251 115 L 312 115 C 326 115, 326 140, 338 140 L 405 157 L 470 157 L 496 157 L 560 157 L 622 172 L 662 186 L 720 186"/></circle>
+    <circle r="4.5" cx="-50" cy="-50" fill="#79c0ff"><animateMotion dur="4.6s" begin="0.8s" repeatCount="indefinite" path="M100 199 L 164 199 C 260 199, 300 185, 338 178 L 405 157 L 470 157 L 496 157 L 560 157 L 622 140 L 662 136 L 720 136 L 788 120 L 812 114 L 870 114"/></circle>
+    <circle r="4.5" cx="-50" cy="-50" fill="#3fb950"><animateMotion dur="4.2s" begin="0.4s" repeatCount="indefinite" path="M102 390 L 164 390 L 194 390 L 294 390 L 392 391 L 418 391 L 470 391 L 520 380 C 540 380, 545 365, 564 363 L 614 363 L 662 363 L 688 363 L 742 363 L 794 363 L 820 363 L 867 363"/></circle>
+    <circle r="4.5" cx="-50" cy="-50" fill="#3fb950"><animateMotion dur="4.2s" begin="2.5s" repeatCount="indefinite" path="M102 390 L 164 390 L 194 390 L 294 390 L 392 391 L 418 391 L 470 391 L 520 380 C 540 380, 545 365, 564 363 L 614 363 L 662 363 L 688 363 L 742 363 L 794 363 L 820 363 L 867 363"/></circle>
+  </g>
+
+  <!-- 수치 -->
+  <g>
+    <g transform="translate(20,504)">
+      <rect width="222" height="80" rx="10" fill="#161b22" stroke="#30363d"/>
+      <text x="16" y="33" font-size="22" font-weight="800" fill="#e6edf3">164만 건 / 일</text>
+      <text x="16" y="58" font-size="11" fill="#8b949e">평균 19건/s · 피크 29건/s · 일 2.4GB</text>
+    </g>
+    <g transform="translate(259,504)">
+      <rect width="222" height="80" rx="10" fill="#161b22" stroke="#30363d"/>
+      <text x="16" y="33" font-size="22" font-weight="800" fill="#f0883e">4.2%</text>
+      <text x="16" y="58" font-size="11" fill="#8b949e">피크 때 Kinesis 처리 용량 사용률</text>
+    </g>
+    <g transform="translate(498,504)">
+      <rect width="222" height="80" rx="10" fill="#161b22" stroke="#30363d"/>
+      <text x="16" y="33" font-size="22" font-weight="800" fill="#3fb950">중복 0행</text>
+      <text x="16" y="58" font-size="11" fill="#8b949e">운영 중 CDC 태스크 무중단 교체</text>
+    </g>
+    <g transform="translate(737,504)">
+      <rect width="203" height="80" rx="10" fill="#161b22" stroke="#30363d"/>
+      <text x="16" y="33" font-size="22" font-weight="800" fill="#29b5e8">22.5만 행</text>
+      <text x="16" y="58" font-size="11" fill="#8b949e">★ 카탈로그 11개 테이블 풀로드 일치</text>
+    </g>
+  </g>
+</svg></div><div class="cap">위는 행동 이벤트 수집 경로, 아래 초록은 운영 DB 변경분(CDC) 적재 경로입니다.</div>
 
   <h3>설계 판단</h3>
   <ul>
@@ -648,6 +856,10 @@ footer { margin-top: 72px; color: var(--muted); font-size: 13px; }
   window.addEventListener('hashchange', openHash); openHash();
   document.querySelectorAll('.case-link').forEach(function (a) { a.addEventListener('click', function () {
     var el = document.getElementById('case-' + a.dataset.case); if (el) el.open = true; }); });
+  document.querySelectorAll('.board').forEach(function (b) { b.addEventListener('click', function () {
+    b.classList.toggle('full'); document.body.style.overflow = b.classList.contains('full') ? 'hidden' : ''; }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') document.querySelectorAll('.board.full').forEach(function (b) {
+    b.classList.remove('full'); document.body.style.overflow = ''; }); });
   window.addEventListener('beforeprint', function () { document.querySelectorAll('details').forEach(function (d) { d.open = true; }); });
 })();
 </script></body></html>
