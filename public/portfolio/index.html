@@ -205,7 +205,7 @@ footer { margin-top: 72px; color: var(--muted); font-size: 13px; }
   <div>
     <p class="company"><mark>Vinu Labs</mark><span class="co-desc">학생 복지 스토어 에브리유니즈 · MAU 약 57만</span></p>
     <p class="meta">직무: <b>백엔드 · 인프라</b></p><p class="meta">기술: <b>NestJS, MySQL, SQS · BullMQ, Kinesis, Snowflake · dbt, AWS, Terraform</b></p><p class="meta">아키텍처: <b>Event-driven, Outbox, CDC</b></p><p class="meta">대표 서비스: <a class="co-link" href="https://www.univstore.com/" target="_blank" rel="noopener">univstore.com ↗</a></p>
-    <div class="proj"><p class="proj-h"><b>[ 휴대폰 개통 신청(MNO) 내재화 ]</b><span class="tag">설계 주도</span><a class="case-link" href="#case-01" data-case="01">자세히 보기 →</a></p><ul><li>외부 링크로만 넘기던 상품을 자체 신청 서비스로 내재화: 신청서, 판매처 처리 화면, 운영 어드민, 신청 상태 흐름과 감사 로그</li><li>단통법 폐지 때 지원금 테이블·엑셀 양식·가격 계산을 가입 유형별 구조로 <em>2주 안에</em> 재편</li><li>레거시(Node + Handlebars)에서 NestJS API로 이관하며, 레거시 동작을 기준으로 기능을 하나씩 대조 검증하고 트래픽 10%부터 단계적으로 전환</li></ul></div><div class="proj"><p class="proj-h"><b>[ 멀티채널 메시지 발송 시스템 ]</b><span class="tag">설계 · 구현</span><a class="case-link" href="#case-02" data-case="02">자세히 보기 →</a></p><ul><li>결과 저장이 안 되던 문자 발송을 <em>SQS + BullMQ</em> 기반으로 재구축(Kafka와 비용·운영 부담 비교 후 선택)</li><li>운영 DB와 분리한 전용 DB, 아웃박스와 유니크 키·결정적 jobId로 재시도·재시작 시 중복·누락 방지</li><li>20만 명 캠페인을 20분 안에 보내는 기준으로 설계, 초당 800명 발송, 개발 환경 실측 <em>4.5만 건 2분</em></li></ul></div><div class="proj"><p class="proj-h"><b>[ 이벤트 파이프라인 · Snowflake 적재 ]</b><span class="tag">설계 · 구축</span><a class="case-link" href="#case-03" data-case="03">자세히 보기 →</a></p><ul><li>Kinesis · Firehose · S3(Parquet) 기반 행동 이벤트 수집, <em>하루 약 164만 건</em>, 피크에도 처리 용량의 5% 미만</li><li>운영 중인 DMS CDC 태스크를 커밋 시각 경계로 <em>무중단 교체</em>, 경계 중복 0행 확인</li><li>LLM 상품 분류 빌드를 별도 태스크로 격리해 실패해도 매시 적재가 멈추지 않게 함</li></ul></div><div class="proj"><p class="proj-h"><b>[ SSO · 외부 연동 ]</b><span class="tag">백엔드 · 연동</span><a class="case-link" href="#case-04" data-case="04">자세히 보기 →</a></p><ul><li>에브리타임 웹뷰 OAuth SSO 자동 로그인, 앱별 User-Agent 판별, 대학백과 SSO(PKCE) 연동</li><li>다우기술 교환권: 중복 콜백은 아웃박스 유니크 키, 응답 유실은 재조회 후 폐기, 잔액 역전은 조건부 UPDATE</li><li>제품키 발급을 <code>SKIP LOCKED</code> 선점과 상태 조건 UPDATE로 처리해 동시 결제 시 재고 경합 차단</li></ul></div><div class="proj"><p class="proj-h"><b>[ 운영 · 장애 대응 · 보안 ]</b><span class="tag">담당</span><a class="case-link" href="#case-05" data-case="05">자세히 보기 →</a></p><ul><li>3개월 이어진 검색 간헐 502를 keep-alive·ALB idle 역전으로 찾고 서킷 fallback을 고쳐 <em>0건</em></li><li>인증서 교체 후 파트너 연동 중단을 CloudWatch·VPC 플로 로그로 추적해 루트 CA 변경으로 판단</li><li>nginx 원격 코드 실행 취약점 패치, ISMS-P 점검 대응, 개인정보 파기 배치·로그 마스킹</li></ul></div>
+    <div class="proj"><p class="proj-h"><b>[ 휴대폰 개통 신청(MNO) 내재화 ]</b><span class="tag">설계 주도</span><a class="case-link" href="#case-01" data-case="01">자세히 보기 →</a></p><ul><li>외부 링크로만 넘기던 상품을 자체 신청 서비스로 내재화: 신청서, 판매처 처리 화면, 운영 어드민, 신청 상태 흐름과 감사 로그</li><li>단통법 폐지 때 지원금 테이블·엑셀 양식·가격 계산을 가입 유형별 구조로 <em>2주 안에</em> 재편</li><li>레거시(Node + Handlebars)에서 NestJS API로 이관하며, 레거시 동작을 기준으로 기능을 하나씩 대조 검증하고 트래픽 10%부터 단계적으로 전환</li></ul></div><div class="proj"><p class="proj-h"><b>[ 멀티채널 메시지 발송 시스템 ]</b><span class="tag">설계 · 구현</span><a class="case-link" href="#case-02" data-case="02">자세히 보기 →</a></p><ul><li>결과 저장이 안 되던 문자 발송을 <em>SQS + BullMQ</em> 기반으로 재구축(Kafka와 비용·운영 부담 비교 후 선택)</li><li>운영 DB와 분리한 전용 DB, 아웃박스와 유니크 키·결정적 jobId로 재시도·재시작 시 중복·누락 방지</li><li>20만 명 캠페인을 20분 안에 보내는 기준으로 설계, 초당 800명 발송, 개발 환경 실측 <em>4.5만 건 2분</em></li></ul></div><div class="proj"><p class="proj-h"><b>[ 이벤트 파이프라인 · Snowflake 적재 ]</b><span class="tag">설계 · 구축</span><a class="case-link" href="#case-03" data-case="03">자세히 보기 →</a></p><ul><li>Kinesis · Firehose · S3(Parquet) 기반 행동 이벤트 수집, <em>하루 약 164만 건</em>, 피크에도 처리 용량의 5% 미만</li><li>운영 중인 DMS CDC 태스크를 커밋 시각 경계로 <em>무중단 교체</em>, 경계 중복 0행 확인</li><li>LLM 상품 분류 빌드를 별도 태스크로 격리해 실패해도 매시 적재가 멈추지 않게 함</li></ul></div><div class="proj"><p class="proj-h"><b>[ SSO · 외부 연동 ]</b><span class="tag">백엔드 · 연동</span><a class="case-link" href="#case-04" data-case="04">자세히 보기 →</a></p><ul><li>에브리타임 웹뷰 OAuth SSO 자동 로그인, 앱별 User-Agent 판별, 대학백과 SSO(PKCE) 연동</li><li>다우기술 교환권: 중복 콜백은 아웃박스 유니크 키, 응답 유실은 재조회 후 폐기, 잔액 역전은 조건부 UPDATE</li><li>제품키 발급을 <code>SKIP LOCKED</code> 선점과 상태 조건 UPDATE로 처리해 동시 결제 시 재고 경합 차단</li></ul></div><div class="proj"><p class="proj-h"><b>[ 운영 · 장애 대응 · 보안 ]</b><span class="tag">담당</span><a class="case-link" href="#case-05" data-case="05">자세히 보기 →</a></p><ul><li>원인 불명의 간헐 502를 AWS 대시보드(ALB · CloudWatch)로 분석해 keep-alive · ALB idle 설정 역전을 찾아 <em>0건</em></li><li>인증서 교체 후 파트너 연동 중단을 CloudWatch·VPC 플로 로그로 추적해 루트 CA 변경으로 판단</li><li>nginx 원격 코드 실행 취약점 패치, ISMS-P 점검 대응, 개인정보 파기 배치·로그 마스킹</li></ul></div>
   </div>
 </div>
 <div class="row job">
@@ -773,7 +773,7 @@ footer { margin-top: 72px; color: var(--muted); font-size: 13px; }
   <p>분석 환경은 Redshift(월 약 65만 원)를 중간 저장소로 쓰고 있었는데, 회사 전체 분석을 Snowflake로 모으기로 하면서 S3까지는 안정적으로 쌓고 그 뒤는 Snowflake가 가져가는 구조로 정리했습니다. 운영 DB의 변경분도 DMS CDC로 Snowflake에 넣고 dbt로 정리했습니다.</p>
 
   <h3>운영 중인 CDC 태스크 무중단 교체</h3>
-  <p>파트너사 교환권 번호가 개인정보로 분류되면서, 주문 CDC가 이 값을 웨어하우스에 평문으로 쌓고 있다는 게 문제가 됐습니다. 컬럼을 빼는 매핑 변경은 실행 중인 태스크에 적용되지 않아서 새 태스크로 넘겨야 했습니다.</p>
+  <p>개인정보로 분류된 컬럼을 웨어하우스 적재 대상에서 빼야 했습니다. 컬럼을 빼는 매핑 변경은 실행 중인 태스크에 적용되지 않아서 새 태스크로 넘겨야 했습니다.</p>
   <ul>
     <li>기존 태스크를 특정 커밋 시각에 멈추고, 새 태스크를 같은 시각부터 시작해 이어 붙였습니다(매핑 규칙 163개).</li>
     <li>되돌릴 수 있는 기한을 "정지 시각 + binlog 보관 72시간"으로 못 박고 복구 지점을 기록했습니다.</li>
@@ -827,16 +827,12 @@ footer { margin-top: 72px; color: var(--muted); font-size: 13px; }
   <div class="case-body"><dl class="infobox"><div><dt>소속</dt><dd>Vinu Labs (<a class="co-link" href="https://www.univstore.com/" target="_blank" rel="noopener">univstore.com ↗</a>)</dd></div><div><dt>기간</dt><dd>상시</dd></div><div><dt>역할</dt><dd>운영 이슈 감시와 대응, 보안 패치, ISMS-P 대응 담당</dd></div><div><dt>기술 스택</dt><dd>AWS ALB, CloudWatch, VPC Flow Logs, nginx</dd></div></dl>
 
   <h3>하는 일</h3>
-  <p>기능 개발과 별개로, 운영에서 올라오는 알람과 문의를 살피고 원인을 찾아 고치는 일을 맡고 있습니다. 보안 취약점이 공개되면 우리 서버에 해당하는지 확인해 패치하고, 매년 ISMS-P 취약점 점검에 맞춰 점검 환경과 조치를 준비합니다. 아래는 최근 석 달 동안 처리한 건입니다.</p>
-
-  <h3>최근 처리한 이슈</h3>
-  <div class="table-wrap"><table style="margin-top:6px">
-    <tr><th style="width:11%">날짜</th><th style="width:22%">이슈</th><th style="width:33%">원인</th><th>조치</th></tr>
-    <tr><td>2026.11</td><td>nginx 원격 코드 실행 취약점</td><td>공개된 nginx 취약점과 커널 권한 상승을 엮으면 인증 없이 root 획득 가능</td><td>운영 서버가 영향 범위에 드는지 확인하고 패치 버전으로 업데이트. 운영 중인 배포 채널(stable)에 맞춰 버전을 고르고, HTTP/2는 패치에 수정이 포함된 것을 확인해 유지</td></tr>
-    <tr><td>2026.11.18</td><td>파트너사 오픈 API 연동 중단</td><td>SSL 인증서 교체로 루트 CA가 바뀌어 한 파트너의 TLS 연결만 실패(시간당 약 100건)</td><td>앱·nginx 로그, CloudWatch, VPC 플로 로그를 대조해 키 변경이 아니라 CA 변경임을 확인하고 파트너에 신뢰 목록 추가를 안내</td></tr>
-    <tr><td>2026.11.12</td><td>검색 간헐 502 (약 3개월)</td><td>검색 서버 keep-alive(5초)가 ALB idle(60초)보다 짧았고, 502 한 번에 서킷이 열려 피해가 2배로 커짐</td><td>keep-alive 65초로 역전 해소, fallback을 끄고 1회 재시도 → 502·500 0건</td></tr>
-    <tr><td>2026.10 ~ 11</td><td>교환권 번호 로그 노출</td><td>외부 교환권 연동 로그와 데이터 복제 대상에 교환권 번호 원문이 남음</td><td>로그 마스킹, 웨어하우스 복제 대상에서 해당 컬럼 제외</td></tr>
-  </table></div>
+  <p>기능 개발과 별개로, 운영에서 올라오는 알람과 문의를 살피고 원인을 찾아 고치는 일을 맡고 있습니다. 보안 취약점이 공개되면 우리 서버에 해당하는지 확인해 패치하고, 매년 ISMS-P 취약점 점검에 맞춰 점검 환경과 조치를 준비합니다. 최근에 처리한 건은 이렇습니다.</p>
+  <ul>
+    <li><b>nginx 원격 코드 실행 취약점</b>: 공개된 취약점이 운영 서버에 해당하는지 확인하고, 운영 중인 배포 채널(stable)에 맞는 패치 버전으로 업데이트했습니다.</li>
+    <li><b>파트너사 API 연동 중단</b>: SSL 인증서 교체 뒤 한 파트너만 연결이 끊긴 원인을 앱·nginx 로그, CloudWatch, VPC 플로 로그로 대조해 루트 CA 변경으로 찾고, 파트너에 신뢰 목록 추가를 안내했습니다.</li>
+    <li><b>원인 불명의 간헐 502</b>: AWS 대시보드(ALB · CloudWatch 지표)로 502가 나는 구간을 좁혀, 검색 서버의 keep-alive가 ALB idle보다 짧은 설정 역전을 찾아 고쳤습니다. 이후 <em>502 · 500 0건</em>입니다.</li>
+  </ul>
 
   <h3>ISMS-P 대응</h3>
   <p>2026년 취약점 점검을 앞두고 정보보안팀 요청에 맞춰 쇼핑몰, 판매처 관리 화면, 운영툴, 정산툴, 검색 대시보드의 점검 계정과 권한을 개발 서버부터 하나씩 만들고 확인했습니다. 점검이 끝나면 회수·복구할 목록도 함께 남겼습니다. KISA 조치 현황 회신을 위해 서버별 Java 버전도 조사했습니다.</p>
