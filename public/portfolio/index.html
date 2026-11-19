@@ -129,7 +129,7 @@ mark { background: var(--mark); color: inherit; padding: 1px 4px; border-radius:
 .infobox div { display: grid; grid-template-columns: 84px 1fr; gap: 12px; padding: 3px 0; align-items: center; }
 .infobox dt { font-weight: 700; color: var(--strong); }
 .infobox dd { margin: 0; color: var(--sub); }
-.infobox .stores { margin: 0; }
+.infobox .stores { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; }
 @media (max-width: 640px) { .infobox div { grid-template-columns: 1fr; gap: 2px; } }
 .co-link { color: var(--strong); font-weight: 600; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
 .badges { display: flex; flex-wrap: wrap; gap: 6px; }
