@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>홍종혁 · 백엔드 개발자</title>
+<meta name="description" content="백엔드 개발자 홍종혁의 경력과 프로젝트 상세">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root {
+  --bg: #ffffff; --fg: #37352f; --strong: #191919; --sub: #5f5e5b; --muted: #9b9a97; --line: rgba(55,53,47,.16);
+  --soft: #f7f6f3; --hover: rgba(55,53,47,.06); --mark: #fbf3db;
+  --pink: #c14c8a; --blue: #337ea9; --orange: #cb912f; --green: #448361; --purple: #9065b0;
+  --tag-bg: #e3ede7; --tag-fg: #2b593f;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #191919; --fg: #d4d4d4; --strong: #f0f0f0; --sub: #a5a5a5; --muted: #7d7d7d; --line: rgba(255,255,255,.13);
+  --soft: #202020; --hover: rgba(255,255,255,.06); --mark: #4a3f1e;
+  --pink: #d15796; --blue: #529cca; --orange: #c19138; --green: #4f9768; --purple: #9a6dd7;
+  --tag-bg: #243d30; --tag-fg: #8fd1a8; } }
+:root[data-theme="dark"] {
+  --bg: #191919; --fg: #d4d4d4; --strong: #f0f0f0; --sub: #a5a5a5; --muted: #7d7d7d; --line: rgba(255,255,255,.13);
+  --soft: #202020; --hover: rgba(255,255,255,.06); --mark: #4a3f1e;
+  --pink: #d15796; --blue: #529cca; --orange: #c19138; --green: #4f9768; --purple: #9a6dd7;
+  --tag-bg: #243d30; --tag-fg: #8fd1a8; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--fg); font-family: Pretendard, ui-sans-serif, -apple-system, "Apple SD Gothic Neo", sans-serif;
+       font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+b, em { font-weight: 700; font-style: normal; color: var(--strong); }
+code { font-family: "SF Mono", Menlo, monospace; font-size: 0.85em; color: #eb5757; background: rgba(135,131,120,.15); padding: 1px 5px; border-radius: 4px; }
+.page { max-width: 720px; margin: 0 auto; padding: 96px 24px 140px; }
+
+/* 페이지 머리 */
+.page-icon { font-size: 72px; line-height: 1; }
+.page-title { font-size: 40px; font-weight: 700; color: var(--strong); letter-spacing: -0.02em; margin: 14px 0 6px; line-height: 1.25; }
+.page-sub { color: var(--muted); font-size: 15px; }
+
+/* 섹션 제목 */
+h2.sec { font-size: 26px; font-weight: 700; color: var(--strong); margin: 64px 0 18px; padding-bottom: 8px; border-bottom: 1px solid var(--line); letter-spacing: -0.01em; }
+h3.sub { font-size: 21px; font-weight: 700; color: var(--strong); margin: 0 0 14px; }
+
+/* About */
+.about { display: grid; grid-template-columns: 200px 1fr; gap: 36px; align-items: center; }
+.about img { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; object-position: 50% 20%; }
+.profile dl { display: grid; grid-template-columns: 76px 1fr; row-gap: 10px; font-size: 15px; }
+.profile dt { font-weight: 700; color: var(--strong); }
+.profile dd a { color: var(--sub); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.intro { margin-top: 36px; }
+.intro p { margin: 0 0 12px; }
+
+/* 2단 행 (기술, 경력, 학력) */
+.row { display: grid; grid-template-columns: 120px 1fr; gap: 28px; padding: 18px 0; }
+.row + .row { border-top: 1px solid var(--line); }
+.row > .when, .row > .label { font-weight: 700; color: var(--strong); font-size: 15px; font-variant-numeric: tabular-nums; }
+.when span { font-weight: 400; color: var(--muted); }
+.cat { font-size: 15px; font-weight: 700; }
+.skill { padding: 12px 0; align-items: baseline; }
+.chip { display: inline-block; font-size: 14px; background: var(--soft); border: 1px solid var(--line); border-radius: 4px; padding: 1px 8px; margin: 0 6px 6px 0; }
+.cat.pink { color: var(--pink); } .cat.blue { color: var(--blue); } .cat.orange { color: var(--orange); }
+.cat.green { color: var(--green); } .cat.purple { color: var(--purple); }
+ul { list-style: none; }
+li { position: relative; padding-left: 20px; margin: 4px 0; }
+li::before { content: "•"; position: absolute; left: 4px; top: 0; color: var(--fg); }
+
+/* 경력 */
+.job { padding: 26px 0; }
+.company { font-size: 18px; font-weight: 700; color: var(--strong); margin-bottom: 8px; }
+mark { background: var(--mark); color: inherit; padding: 1px 4px; border-radius: 3px; }
+.co-desc { display: block; font-size: 14px; font-weight: 400; color: var(--muted); margin-top: 4px; }
+.meta { font-size: 15px; margin: 3px 0; color: var(--sub); }
+.proj { margin-top: 20px; }
+.proj-h { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 4px; }
+.tag { font-size: 12.5px; background: var(--tag-bg); color: var(--tag-fg); border-radius: 4px; padding: 0 7px; line-height: 1.7; }
+.case-link { margin-left: auto; font-size: 13.5px; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+.case-link:hover { color: var(--fg); }
+
+/* 케이스 스터디 토글 */
+.case { border-radius: 6px; }
+.case summary { list-style: none; cursor: pointer; display: flex; gap: 12px; align-items: flex-start; padding: 12px 8px; border-radius: 6px; }
+.case summary::-webkit-details-marker { display: none; }
+.case summary::before { content: "▸"; color: var(--muted); font-size: 14px; line-height: 1.9; transition: transform .15s; }
+.case[open] summary::before { transform: rotate(90deg); }
+.case summary:hover { background: var(--hover); }
+.case-no { font-weight: 700; color: var(--green); font-variant-numeric: tabular-nums; line-height: 1.6; }
+.case-t { font-size: 18px; font-weight: 700; color: var(--strong); line-height: 1.6; }
+.case-t small { display: block; font-size: 14px; font-weight: 400; color: var(--muted); }
+.case-body { padding: 6px 4px 28px 34px; border-left: 2px solid var(--line); margin: 0 0 18px 13px; }
+.case-body .byline { color: var(--muted); font-size: 14px; margin-bottom: 4px; }
+.case-body h3 { font-size: 18px; font-weight: 700; color: var(--strong); margin: 28px 0 8px; border: none; padding: 0; }
+.case-body p { margin: 8px 0; color: var(--fg); }
+.case-body ol.steps { margin: 10px 0 0 22px; font-size: 15px; list-style: decimal; }
+.case-body ol.steps li { padding-left: 2px; }
+.case-body ol.steps li::before { display: none; }
+.table-wrap { overflow-x: auto; margin: 12px 0; }
+.case-body table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.case-body th, .case-body td { border: 1px solid var(--line); padding: 7px 10px; text-align: left; vertical-align: top; }
+.case-body th { background: var(--soft); font-weight: 600; color: var(--sub); }
+.case-body td.pick, .case-body th.pick { background: rgba(68,131,97,.10); }
+.fig { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px; margin: 16px 0; }
+.fig svg { display: block; width: 100%; height: auto; }
+.fig .cap { font-size: 12.5px; color: #8b8a86; margin-top: 6px; }
+.case-body > .cap, .cap { font-size: 13px; color: var(--muted); }
+
+footer { margin-top: 72px; color: var(--muted); font-size: 13px; }
+.theme { position: fixed; right: 20px; bottom: 20px; width: 38px; height: 38px; border-radius: 8px; border: 1px solid var(--line);
+         background: var(--bg); color: var(--sub); cursor: pointer; font-size: 17px; }
+
+@media (max-width: 640px) {
+  body { font-size: 15px; }
+  .page { padding: 48px 16px 96px; }
+  .page-icon { font-size: 56px; }
+  .page-title { font-size: 32px; }
+  .about { grid-template-columns: 1fr; gap: 20px; }
+  .about img { width: 140px; height: 140px; }
+  .row { grid-template-columns: 1fr; gap: 6px; }
+  .case-body { padding-left: 14px; margin-left: 4px; }
+  .case-link { margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .flow { display: none; } }
+@media print {
+  .flow { display: none; }
+  .theme { display: none; }
+  .page { padding: 0 6mm; max-width: none; }
+  .job, .proj, .fig, table, .row { break-inside: avoid; }
+  .case-body { border: none; padding-left: 0; margin-left: 0; }
+}
+</style></head>
+<body>
+<main class="page">
+  <div class="page-icon">👨🏻‍💻</div>
+  <h1 class="page-title">홍종혁 · 백엔드 개발자</h1>
+  <p class="page-sub">경력 3년 9개월 · 통신 · 결제 · 메시징 · 데이터 파이프라인</p>
+
+  <h2 class="sec">✨ About Me</h2>
+  <div class="about">
+    <img src="data:image/jpeg;base64,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" alt="홍종혁">
+    <div class="profile">
+      <h3 class="sub">🔎 Profile</h3>
+      <dl>
+        <dt>E-MAIL</dt><dd><a href="mailto:dreamjh1111@gmail.com">dreamjh1111@gmail.com</a></dd>
+        <dt>TEL</dt><dd>010-4949-3646</dd>
+        <dt>Blog</dt><dd><a href="https://velog.io/@dreamjh/posts" target="_blank" rel="noopener">velog.io/@dreamjh</a></dd>
+        <dt>GitHub</dt><dd><a href="https://github.com/xo0449" target="_blank" rel="noopener">github.com/xo0449</a></dd>
+      </dl>
+    </div>
+  </div>
+  <div class="intro"><h3 class="sub">🧐 Introduction</h3><p>통신·결제처럼 규칙과 예외가 많은 도메인에서, <em>여러 외부 파트너의 서로 다른 조건을 하나의 흐름으로 정리</em>해 온 백엔드 개발자입니다.</p><p>LG유플러스 5G 과금 서버에서 통신 도메인을 시작했고, 지금은 휴대폰 개통 신청(MNO), 메시지 발송, 데이터 파이프라인, 외부 연동을 설계부터 운영까지 맡고 있습니다.</p><p>운영 이슈와 보안 패치도 함께 담당합니다.</p></div>
+
+  <h2 class="sec">👨🏻‍🔧 Skills</h2>
+  <div class="row skill"><div class="cat pink">언어</div><div><span class="chip">TypeScript</span><span class="chip">Java</span><span class="chip">ShellScript</span></div></div><div class="row skill"><div class="cat blue">프레임워크</div><div><span class="chip">NestJS</span><span class="chip">Spring</span><span class="chip">React</span></div></div><div class="row skill"><div class="cat orange">데이터·메시징</div><div><span class="chip">MySQL</span><span class="chip">MongoDB</span><span class="chip">Redis(Valkey)</span><span class="chip">Kafka</span><span class="chip">SQS</span><span class="chip">BullMQ</span><span class="chip">Kinesis</span></div></div><div class="row skill"><div class="cat green">데이터 웨어하우스</div><div><span class="chip">Snowflake</span><span class="chip">dbt</span><span class="chip">AWS DMS(CDC)</span></div></div><div class="row skill"><div class="cat purple">인프라</div><div><span class="chip">AWS (ECS Fargate, EKS, KMS)</span><span class="chip">Terraform</span><span class="chip">Helm</span><span class="chip">Docker</span></div></div>
+
+  <h2 class="sec" id="career">👨🏻‍💻 Career</h2>
+  
+<div class="row job">
+  <div class="when">2025.03<br><span>~ 재직 중</span></div>
+  <div>
+    <p class="company"><mark>Vinu Labs</mark><span class="co-desc">학생 복지 스토어 에브리유니즈 · MAU 약 57만</span></p>
+    <p class="meta">직무: <b>백엔드 · 인프라</b></p><p class="meta">기술: <b>TypeScript, NestJS, MySQL, Redis(Valkey), SQS, BullMQ, Kinesis, Snowflake, dbt, AWS(ECS·EKS·DMS), Terraform</b></p><p class="meta">아키텍처: <b>Event-driven, Outbox, CDC</b></p>
+    <div class="proj"><p class="proj-h"><b>[ 휴대폰 개통 신청(MNO) 내재화 ]</b><span class="tag">설계 주도</span><a class="case-link" href="#case-01" data-case="01">자세히 보기 →</a></p><ul><li>외부 링크로만 넘기던 휴대폰 상품을 자체 신청 서비스로 내재화, 신청 데이터를 직접 보유. <em>연 매출 약 3~4억 원 규모</em></li><li>오픈 한 달 전 단통법 폐지 대응: 시행 당일 명칭 변경, 2주 안에 지원금을 가입 유형별 구조로 재편</li><li>레거시(Node + Handlebars)에서 신규 API로 이관, 레거시 동작과 대조해 차이 4건 중 3건 수정</li><li>가족 개통 도입으로 올해 MNO <em>매출 약 10% 증가</em></li></ul></div><div class="proj"><p class="proj-h"><b>[ 멀티채널 메시지 발송 시스템 ]</b><span class="tag">설계 · 구현</span><a class="case-link" href="#case-02" data-case="02">자세히 보기 →</a></p><ul><li>결과 저장이 안 되던 문자 발송을 <em>SQS + BullMQ</em> 기반 시스템으로 재구축(Kafka와 비용·운영 부담 비교 후 선택)</li><li>운영 DB와 분리된 <em>전용 DB</em>, 서비스 쪽 <em>아웃박스</em>와 유니크 키·결정적 잡 ID로 중복·누락 방지</li><li>사내 5개 서비스 알림을 공통 SDK로 이전, dev 실측 <em>4.5만 건 2분</em>. 알림톡 전환(건당 24.5원 → 3.8원)의 기반</li></ul></div><div class="proj"><p class="proj-h"><b>[ 이벤트 파이프라인 · Snowflake 적재 ]</b><span class="tag">설계 · 구축</span><a class="case-link" href="#case-03" data-case="03">자세히 보기 →</a></p><ul><li>Kinesis 기반 행동 이벤트 수집 파이프라인 설계·구축, <em>하루 약 164만 건</em> 처리</li><li>운영 중인 주문 DMS CDC 태스크를 커밋 시각 경계로 <em>무중단 교체</em>(경계 중복 0행, 72시간 롤백 경로)</li><li>상품 테이블 11개 CDC 추가(풀로드 22.5만 행 원본과 일치), LLM 분류 빌드 격리, 모델 비교로 비용 <em>약 28% 절감</em></li></ul></div><div class="proj"><p class="proj-h"><b>[ SSO · 외부 연동 ]</b><span class="tag">백엔드 · 연동 구현</span><a class="case-link" href="#case-04" data-case="04">자세히 보기 →</a></p><ul><li>에브리타임 웹뷰 SSO 자동 로그인을 새 프론트에 구현, 앱별 User-Agent 판별로 오작동 제거</li><li>대학백과 SSO(PKCE) 연동, 고등학생 인증 회원 일평균 순증 <em>15.2명 → 24.4명(+60%)</em></li><li>다우기술 교환권: 중복 콜백·발행 응답 유실·잔액 역전을 아웃박스 키·재조회 폐기·조건부 UPDATE로 해결</li></ul></div><div class="proj"><p class="proj-h"><b>[ 커머스 기능 ]</b></p><ul><li>제품키 자동 발급(SKIP LOCKED 동시성 처리)으로 일평균 판매 <em>11.0건 → 19.1건(+74%)</em></li><li>구매 미리보기 API로 결제 진입 후 구매율 <em>40.3% → 49.9%</em> 달성에 기여</li></ul></div><div class="proj"><p class="proj-h"><b>[ 서비스 운영 · 보안 ]</b><span class="tag">담당</span><a class="case-link" href="#case-05" data-case="05">자세히 보기 →</a></p><ul><li>3개월 이어진 검색 간헐 502의 원인을 keep-alive·ALB idle 역전으로 찾고, 피해를 키우던 서킷 fallback을 고쳐 <em>0건</em></li><li>nginx 원격 코드 실행 취약점(nginx2root) 서버 3대 패치, 인증서 교체 후 파트너 TLS 연동 중단 원인 분석</li><li>ISMS-P 점검 환경·계정 대응, 개인정보 파기 배치·로그 마스킹</li></ul></div>
+  </div>
+</div>
+<div class="row job">
+  <div class="when">2023.10<br><span>~ 2024.11</span></div>
+  <div>
+    <p class="company"><mark>WoodangNetwork</mark></p>
+    <p class="meta">직무: <b>백엔드</b></p><p class="meta">기술: <b>AWS, CI/CD</b></p>
+    <div class="proj"><p class="proj-h"><b>[ GRIDA 서비스 ]</b><span class="tag">백엔드 전체</span></p><ul><li>백엔드·AWS 인프라·결제 시스템을 처음부터 구축, <em>3개월 만에 출시 후 월 매출 1억 원</em></li></ul></div>
+  </div>
+</div>
+<div class="row job">
+  <div class="when">2023.04<br><span>~ 2023.07</span></div>
+  <div>
+    <p class="company"><mark>GearSecond</mark></p>
+    <p class="meta">직무: <b>백엔드</b></p><p class="meta">기술: <b>Docker, Jenkins, Terraform, EKS, Helm</b></p>
+    <div class="proj"><p class="proj-h"><b>[ 모바일 게임 「슬레이어 키우기」 ]</b><span class="tag">백엔드</span></p><ul><li>백엔드 서버 개발, 수동 배포를 Docker·Jenkins·Terraform(EKS) 자동 배포로 전환</li></ul></div>
+  </div>
+</div>
+<div class="row job">
+  <div class="when">2021.10<br><span>~ 2022.03</span></div>
+  <div>
+    <p class="company"><mark>AriaTech</mark></p>
+    <p class="meta">직무: <b>통신연구원</b></p><p class="meta">기술: <b>Kafka, nGrinder</b></p>
+    <div class="proj"><p class="proj-h"><b>[ LG유플러스 5G 과금 서버(CMF) ]</b></p><ul><li>HA 이중화로 장애 시 <em>5초 이내</em> 자동 복구</li><li>Kafka 비동기 구조 개선에 참여해 처리량 <em>1,000 → 20,000 TPS</em> 향상에 기여</li></ul></div>
+  </div>
+</div>
+
+  <h2 class="sec" id="cases">🤓 프로젝트 상세</h2>
+  <p class="cap" style="margin:-6px 0 10px">제목을 누르면 펼쳐집니다. 경력의 "자세히 보기 →"에서도 바로 열립니다.</p>
+  
+<details class="case" id="case-01">
+  <summary><span class="case-no">01</span><span class="case-t">휴대폰 개통 신청(MNO) 내재화<small>외부 링크 상품을 자체 신청 서비스로, 단통법 폐지 대응과 레거시 이관</small></span></summary>
+  <div class="case-body"><div class="byline">Vinu Labs · 2025.03 ~ 현재 · 설계를 주도하고 백엔드, 운영 어드민, 배치를 구현</div>
+
+  <h3>배경</h3>
+  <p>제가 맡기 전까지 휴대폰은 제휴 상품이었습니다. 고객이 누르면 중계업체 사이트로 넘어가는 외부 링크였고, 그 뒤로는 우리가 볼 수 있는 게 없었습니다. 고객이 정말 우리 사이트를 거쳐 개통했는지 확인할 방법이 없었고, 매달 중계업체가 보내 주는 결과를 그대로 믿을 수밖에 없었습니다.</p>
+
+  <div class="fig">
+    <svg viewBox="0 0 640 170" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans KR, sans-serif" font-size="10.5">
+      <defs><marker id="k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#555"/></marker></defs>
+      <text x="0" y="16" font-weight="700" fill="#888">이전</text>
+      <g text-anchor="middle">
+        <rect x="40" y="24" width="90" height="32" rx="4" fill="#f3f3f3" stroke="#aaa"/><text x="85" y="44">고객</text>
+        <rect x="160" y="24" width="110" height="32" rx="4" fill="#f3f3f3" stroke="#aaa"/><text x="215" y="44">우리 상품 페이지</text>
+        <rect x="300" y="18" width="330" height="44" rx="4" fill="#fff" stroke="#bbb" stroke-dasharray="4 3"/>
+        <rect x="315" y="24" width="140" height="32" rx="4" fill="#f3f3f3" stroke="#aaa"/><text x="385" y="44">중계업체 사이트에서 신청</text>
+        <rect x="485" y="24" width="130" height="32" rx="4" fill="#f3f3f3" stroke="#aaa"/><text x="550" y="44">개통·배송</text>
+        <text x="465" y="74" fill="#999" font-size="9.5">이 구간은 우리에게 보이지 않음</text>
+        <path d="M550 62 Q 550 92 400 92 L 230 92" fill="none" stroke="#c0392b" stroke-dasharray="4 3" marker-end="url(#k)"/>
+        <text x="400" y="86" fill="#c0392b" font-size="9.5">한 달 뒤 결과 파일</text>
+      </g>
+      <g stroke="#555"><line x1="130" y1="40" x2="158" y2="40" marker-end="url(#k)"/><line x1="270" y1="40" x2="313" y2="40" marker-end="url(#k)"/><line x1="455" y1="40" x2="483" y2="40" marker-end="url(#k)"/></g>
+      <text x="0" y="122" font-weight="700" fill="#111">이후</text>
+      <g text-anchor="middle">
+        <rect x="40" y="130" width="90" height="32" rx="4" fill="#fff" stroke="#111"/><text x="85" y="150">고객</text>
+        <rect x="160" y="130" width="140" height="32" rx="4" fill="#111"/><text x="230" y="150" fill="#fff">우리 신청서 · 신청 DB</text>
+        <rect x="330" y="130" width="150" height="32" rx="4" fill="#111"/><text x="405" y="150" fill="#fff">판매처 관리 화면에서 처리</text>
+        <rect x="510" y="130" width="120" height="32" rx="4" fill="#fff" stroke="#111"/><text x="570" y="150">상태를 직접 확인</text>
+      </g>
+      <g stroke="#111"><line x1="130" y1="146" x2="158" y2="146" marker-end="url(#k)"/><line x1="300" y1="146" x2="328" y2="146" marker-end="url(#k)"/><line x1="480" y1="146" x2="508" y2="146" marker-end="url(#k)"/></g>
+    <circle class="flow" r="4.2" fill="#0e9f6e" opacity="0"><animateMotion dur="3.2s" begin="0s" repeatCount="indefinite" path="M130 146 L158 146 L300 146 L328 146 L480 146 L508 146 L570 146" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="3.2s" begin="0s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#0e9f6e" opacity="0"><animateMotion dur="3.2s" begin="0s" repeatCount="indefinite" path="M130 146 L158 146 L300 146 L328 146 L480 146 L508 146 L570 146"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="3.2s" begin="0s" repeatCount="indefinite"/></circle><circle class="flow" r="4.2" fill="#0e9f6e" opacity="0"><animateMotion dur="3.2s" begin="1.6s" repeatCount="indefinite" path="M130 146 L158 146 L300 146 L328 146 L480 146 L508 146 L570 146" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="3.2s" begin="1.6s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#0e9f6e" opacity="0"><animateMotion dur="3.2s" begin="1.6s" repeatCount="indefinite" path="M130 146 L158 146 L300 146 L328 146 L480 146 L508 146 L570 146"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="3.2s" begin="1.6s" repeatCount="indefinite"/></circle><circle class="flow" r="4.2" fill="#9b9a97" opacity="0"><animateMotion dur="3.6s" begin="0.4s" repeatCount="indefinite" path="M85 40 L158 40 L270 40 L313 40 L455 40 L483 40" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="3.6s" begin="0.4s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#9b9a97" opacity="0"><animateMotion dur="3.6s" begin="0.4s" repeatCount="indefinite" path="M85 40 L158 40 L270 40 L313 40 L455 40 L483 40"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="3.6s" begin="0.4s" repeatCount="indefinite"/></circle></svg>
+  </div>
+
+  <h3>신청 내재화</h3>
+  <p>신청을 우리 서비스 안으로 옮겼습니다. 상품 노출과 신청서는 우리 사이트에, 접수부터 개통·배송 처리는 판매처(대리점)가 쓰는 판매처 관리 화면에, 지원금과 요금제 관리는 운영 어드민에 만들었습니다. 이제 신청 한 건 한 건이 우리 데이터로 남고, 접수·보류·배송·개통 상태가 바뀔 때마다 기록됩니다. 판매처가 한꺼번에 처리할 수 있도록 상태 변경과 송장 등록은 엑셀 일괄 업로드로도 받았습니다.</p>
+  <p>이렇게 쌓인 데이터 위에서 가족 개통, 30·36개월 할부 같은 기능을 하나씩 더할 수 있었습니다.</p>
+  
+
+<h3>단통법 폐지 대응</h3>
+  <p>가장 힘들었던 건 단통법 폐지였습니다. 오픈을 한 달 앞두고 지원금 정책이 바뀐다는 이야기를 들었는데, 어떤 지원금으로 바뀌는지는 물론 지원금 이름조차 나중에 정해진다고 했습니다. 판매처를 통해 들은 통신 3사의 이야기도 서로 달랐습니다.</p>
+  <p>그래서 확정될 때까지 기다리지 않고, 정책과 상관없이 필요한 지원금 관리 화면과 엑셀 일괄 등록부터 만들었습니다. 7월 22일 시행 당일에는 "공시지원금"을 "공통지원금"으로 바꿨습니다. 그다음 2주 동안 하나였던 지원금을 가입 유형별(번호이동·기기변경·신규가입)로 나눠 테이블, 엑셀 양식, 가격 계산, 화면을 다시 맞췄습니다.</p>
+
+  <div class="fig">
+    <svg viewBox="0 0 640 96" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans KR, sans-serif" font-size="9.5">
+      <line x1="20" y1="40" x2="620" y2="40" stroke="#bbb" stroke-width="2"/>
+      <g text-anchor="middle">
+        <circle cx="40" cy="40" r="5" fill="#888"/><text x="40" y="24" font-weight="700">2025.03</text><text x="40" y="60">내재화 결정</text>
+        <circle cx="140" cy="40" r="5" fill="#888"/><text x="140" y="24" font-weight="700">05 ~ 07</text><text x="140" y="60">신청·지원금 관리</text><text x="140" y="73">엑셀 일괄 등록</text>
+        <circle cx="250" cy="40" r="7" fill="#c0392b"/><text x="250" y="24" font-weight="700" fill="#c0392b">07.22</text><text x="250" y="60" fill="#c0392b">단통법 폐지 시행</text><text x="250" y="73" fill="#c0392b">명칭 변경</text>
+        <circle cx="350" cy="40" r="5" fill="#888"/><text x="350" y="24" font-weight="700">08 초</text><text x="350" y="60">가입 유형별</text><text x="350" y="73">지원금 분리</text>
+        <circle cx="450" cy="40" r="5" fill="#111"/><text x="450" y="24" font-weight="700">2025.10</text><text x="450" y="60">신규 API로 이관</text>
+        <circle cx="530" cy="40" r="5" fill="#888"/><text x="530" y="24" font-weight="700">2026.01</text><text x="530" y="60">가족 개통</text>
+        <circle cx="605" cy="40" r="5" fill="#888"/><text x="605" y="24" font-weight="700">2026.10</text><text x="605" y="60">30·36개월</text><text x="605" y="73">할부</text>
+      </g>
+    </svg>
+    <div class="cap">커밋과 회의록 날짜 기준</div>
+  </div>
+
+  <h3>레거시의 한계와 이관</h3>
+  <p>MNO를 처음 얹은 웹은 회사 초창기에 만든 레거시였습니다. Node 서버가 Handlebars로 화면까지 그렸고, 한 레포에 프론트와 백엔드가 규격 없이 섞여 있어 하나를 고치면 다른 곳이 깨졌습니다.</p>
+  <div class="table-wrap"><table style="margin:8px 0 10px">
+    <tr><th style="width:18%"></th><th style="width:41%">레거시 웹</th><th>신규</th></tr>
+    <tr><td>구조</td><td>Node + Handlebars, 프론트·백엔드가 한 레포</td><td>API 서버(NestJS, 도메인 계층 분리)와 프론트 분리</td></tr>
+    <tr><td>MNO 이후 기능</td><td>수정할 때마다 사이드 이펙트</td><td>가족 개통(2026.01), 30·36개월 할부(2026.10)를 신규 API 위에 추가</td></tr>
+  </table></div>
+  <p>옮길 때 원칙은 하나였습니다. <em>레거시의 동작이 정답</em>이라는 것. 노션에 기능을 하나하나 분류해 목록을 만들고, 제가 맡은 항목은 레거시 코드와 직접 대조했습니다. 비교용 AI 스킬도 함께 썼습니다. 그 결과 사전신청 하나에서만 네 가지 차이를 찾았습니다. 예를 들어 고객이 옵션을 고르지 않으면 레거시는 상품의 기본값을 채워 넣는데, 신규 API는 그대로 빈 값을 저장하고 있었습니다. 세 가지는 레거시와 같게 고쳤고, 나머지 하나는 비교 문서에 남겼습니다.</p>
+  <p>전환은 2026년 웹 전체 개편과 함께 트래픽 10%부터 단계적으로 넘겼고, 개편 QA 731건 중 약 230건을 맡아 처리했습니다.</p>
+
+  <h3>결과와 회고</h3>
+  <p>MNO는 지금 연 매출 약 3~4억 원 규모이고, 올해 가족 개통을 도입한 뒤 매출이 약 10% 늘었습니다.</p>
+  <p>아쉬운 점은 할부 계산입니다. 백엔드는 모노레포였고 공통 모듈도 서브모듈로 함께 쓰고 있었지만, 할부 계산은 당시 일정에 맞춰 신규 API, 고객 화면, 운영 어드민, 리포트에 각각 따로 만들었습니다. 그러다 보니 리포트 금액이 2~3원 어긋나는 일이 생겼습니다. 메시지 시스템에서는 SDK 패키지로 계약을 공유했던 것처럼, 할부 계산도 공통 모듈이나 패키지로 빼서 프론트와 백엔드가 같은 코드를 쓰게 했다면 더 좋았을 것 같습니다.</p>
+  
+</div>
+</details>
+<details class="case" id="case-02">
+  <summary><span class="case-no">02</span><span class="case-t">멀티채널 메시지 발송 시스템<small>SQS + BullMQ, 전용 DB 분리, 아웃박스와 멱등</small></span></summary>
+  <div class="case-body"><div class="byline">Vinu Labs · 2026.09 ~ 10 · 설계 및 구현</div>
+
+  <h3>배경</h3>
+  <p>고객에게 가는 알림은 주문·배송·인증·CS·재입고 같은 정보성 안내부터 마케팅까지 전부 문자(SMS/LMS)로 나가고 있었습니다. 2026년 상반기에만 132만 건, 약 3,200만 원이었습니다. 대량 발송은 Lambda가 수신자 목록을 청크로 잘라 큐에 넣는 방식이었고, 중계사를 부르는 코드는 서비스 여러 곳에 흩어져 있었습니다.</p>
+  <p>가장 큰 문제는 보낸 결과를 저장하지 못한다는 점이었습니다. 누구에게 무엇이 나갔고 실제로 도착했는지 알 수 없었고, 그래서 실패하면 문자로 대신 보내야 하는 알림톡 같은 채널을 붙일 수가 없었습니다.</p>
+
+  <h3>요구사항</h3>
+  <p>회사는 정보성 알림을 알림톡(건당 24.5원 → 3.8원)으로, 광고를 브랜드메시지로 바꿔 연 2,000만~2,500만 원을 줄이려 했고, 다음 해에는 CRM 자동화도 예정돼 있었습니다. 그래서 채널 전환에 앞서 발송 시스템부터 다시 만들기로 했고, 아래를 기준으로 잡았습니다.</p>
+  <ul style="margin:4px 0 0">
+    <li>문자, 알림톡, 브랜드메시지, 이메일을 하나의 요청 형식(SDK)으로 보낸다</li>
+    <li>수신자 한 명 단위로 상태(발송·성공·실패)와 실제로 나간 채널을 남긴다</li>
+    <li>20만 명 캠페인을 20분 안에, 중계사 한도(초당 800명) 안에서 보낸다</li>
+    <li>재시도나 배포 중 재시작에도 중복·누락이 없다</li>
+    <li>요청하는 서비스와는 레포와 DB를 나누고, SDK로만 연결한다</li>
+  </ul>
+
+  <h3>Kafka 대신 SQS + BullMQ</h3>
+  <p>처음 비교한 건 Kafka였습니다. 처리량과 재처리(리플레이)는 Kafka가 낫지만, 우리 규모에서 필요한 처리량은 초당 잡 4개 수준이었습니다. 반면 재시도, 지연, 우선순위, 속도 제한은 Kafka에서는 직접 만들어야 하고, 클러스터는 쓰지 않아도 비용이 나갑니다.</p>
+  <div class="table-wrap"><table style="margin:8px 0 6px">
+    <tr><th style="width:16%">관점</th><th style="width:40%">Kafka 전 구간</th><th>SQS + BullMQ (선택)</th></tr>
+    <tr><td>고정 비용</td><td>사용량과 무관한 클러스터 상시 비용</td><td>Valkey 노드 비용만, SQS는 사용량 과금</td></tr>
+    <tr><td>처리량 상한</td><td>파티션 수만큼 확장, 초당 수만 건</td><td>수백~수천 잡/초. 요구치(초당 잡 4개)에 충분</td></tr>
+    <tr><td>잡 기능</td><td>재시도·지연·우선순위·속도 제한 직접 구현</td><td>BullMQ 내장, SQS DLQ 내장</td></tr>
+    <tr><td>멱등</td><td>트랜잭션·정확히 한 번 옵션</td><td>at-least-once라 앱이 직접 보장</td></tr>
+    <tr><td>재처리</td><td>오프셋 되감기로 리플레이</td><td>없음. DB 결과 테이블과 DLQ 기준</td></tr>
+  </table></div>
+  <div class="cap">설계 문서의 비교표에서 발췌</div>
+  <p style="margin-top:8px">외부 서비스와의 경계는 SQS로, 내부 단계 사이는 BullMQ로 정했습니다. 대신 중복 방지와 오토스케일 지표는 우리가 직접 책임지기로 했습니다.</p>
+
+  <h3>중계사 제약</h3>
+  <p>중계사(NHN Cloud)는 요청당 1,000명까지 받고, 콜백에 우리가 보낸 데이터를 돌려주지 않습니다. 그래서 요청할 때 넣은 그룹 키로 결과를 다시 이었고, 발송과 콜백 해석은 중계사별 어댑터에 넣어 중계사를 바꾸거나 추가해도 요청 형식과 SDK는 그대로 두었습니다.</p>
+
+  
+
+<h3>구조</h3>
+  <div class="fig" style="padding:10px 8px 6px">
+    <svg viewBox="0 0 640 286" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans KR, sans-serif">
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0,0L10,5L0,10z" fill="#444"/></marker>
+        <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0,0L10,5L0,10z" fill="#0e9f6e"/></marker>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0,0L10,5L0,10z" fill="#c0392b"/></marker>
+      </defs>
+
+      
+      <rect x="6" y="30" width="122" height="248" rx="10" fill="#f5f6f7"/>
+      <text x="67" y="20" text-anchor="middle" font-size="10.5" font-weight="700" fill="#333">요청하는 서비스</text>
+      <rect x="250" y="30" width="262" height="248" rx="10" fill="#eef8f3" stroke="#0e9f6e" stroke-dasharray="5 4"/>
+      <text x="381" y="20" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0b7a55">메시지 시스템 · 별도 레포, 전용 DB</text>
+      <text x="580" y="20" text-anchor="middle" font-size="10.5" font-weight="700" fill="#333">중계사</text>
+
+      
+      <g font-size="9.5" text-anchor="middle" fill="#333">
+        <rect x="16" y="48" width="102" height="92" rx="7" fill="#fff" stroke="#d0d4d8"/>
+        <text x="67" y="66" font-weight="700" font-size="10">즉시 발송</text>
+        <text x="67" y="84">고객 앱</text><text x="67" y="98">판매처 관리 화면</text><text x="67" y="112">운영 어드민</text><text x="67" y="126">제휴 API</text>
+        <rect x="16" y="152" width="102" height="48" rx="7" fill="#fff" stroke="#d0d4d8"/>
+        <text x="67" y="171" font-weight="700" font-size="10">배치</text>
+        <text x="67" y="187">대량·예약, 500건씩</text>
+        <rect x="16" y="212" width="102" height="54" rx="7" fill="#fff" stroke="#d0d4d8"/>
+        <text x="67" y="232" font-weight="700" font-size="10">결과 수신</text>
+        <text x="67" y="248">수신자별 성공·실패</text>
+      </g>
+
+      
+      <g text-anchor="middle">
+        <rect x="150" y="92" width="80" height="40" rx="20" fill="#fff" stroke="#0e9f6e" stroke-width="1.5"/>
+        <text x="190" y="109" font-size="10" font-weight="700" fill="#0b7a55">SQS</text>
+        <text x="190" y="123" font-size="8.5" fill="#555">발송 요청</text>
+        <rect x="150" y="219" width="80" height="40" rx="20" fill="#fff" stroke="#0e9f6e" stroke-width="1.5"/>
+        <text x="190" y="236" font-size="10" font-weight="700" fill="#0b7a55">SQS</text>
+        <text x="190" y="250" font-size="8.5" fill="#555">발송 결과</text>
+      </g>
+      <line x1="118" y1="100" x2="148" y2="108" stroke="#444" marker-end="url(#ar)"/>
+      <line x1="118" y1="174" x2="148" y2="120" stroke="#444" marker-end="url(#ar)"/>
+      <line x1="150" y1="239" x2="120" y2="239" stroke="#0e9f6e" stroke-width="1.5" marker-end="url(#ag)"/>
+      <text x="140" y="146" font-size="8.5" fill="#666" text-anchor="middle">SDK</text>
+
+      
+      <g text-anchor="middle">
+        <rect x="264" y="84" width="104" height="56" rx="8" fill="#111"/>
+        <text x="316" y="106" font-size="10.5" font-weight="700" fill="#fff">service</text>
+        <text x="316" y="122" font-size="8.5" fill="#bbb">200명 단위로 분할</text>
+        <text x="316" y="133" font-size="8.5" fill="#bbb">결과 확정</text>
+        <rect x="398" y="84" width="104" height="56" rx="8" fill="#111"/>
+        <text x="450" y="106" font-size="10.5" font-weight="700" fill="#fff">processor</text>
+        <text x="450" y="122" font-size="8.5" fill="#bbb">중계사 호출</text>
+        <text x="450" y="133" font-size="8.5" fill="#bbb">중계사별 어댑터</text>
+        <rect x="398" y="196" width="104" height="56" rx="8" fill="#111"/>
+        <text x="450" y="218" font-size="10.5" font-weight="700" fill="#fff">webhook</text>
+        <text x="450" y="234" font-size="8.5" fill="#bbb">서명 검증만</text>
+        <text x="450" y="245" font-size="8.5" fill="#bbb">DB 접근 없음</text>
+        
+        <path d="M274 200 v36 a42 8 0 0 0 84 0 v-36" fill="#fff" stroke="#999"/>
+        <ellipse cx="316" cy="200" rx="42" ry="8" fill="#fff" stroke="#999"/>
+        <text x="316" y="225" font-size="10" font-weight="700" fill="#333">MySQL</text>
+        <text x="316" y="239" font-size="8.5" fill="#666">수신자별 상태</text>
+      </g>
+      <line x1="230" y1="112" x2="262" y2="112" stroke="#0e9f6e" stroke-width="1.5" marker-end="url(#ag)"/>
+      <line x1="368" y1="104" x2="396" y2="104" stroke="#444" marker-end="url(#ar)"/>
+      <text x="382" y="97" font-size="8" fill="#666" text-anchor="middle">BullMQ</text>
+      <path d="M420 140 C 420 160, 380 160, 360 141" fill="none" stroke="#c0392b" stroke-dasharray="3 3" marker-end="url(#arr)"/>
+      <text x="398" y="168" font-size="8" fill="#c0392b" text-anchor="middle">요청 실패</text>
+      <path d="M398 216 C 376 216, 364 176, 352 143" fill="none" stroke="#444" marker-end="url(#ar)"/>
+      <text x="378" y="196" font-size="8" fill="#666" text-anchor="middle">BullMQ</text>
+      <line x1="316" y1="140" x2="316" y2="190" stroke="#999" stroke-dasharray="2 3"/>
+      <path d="M270 140 C 250 170, 240 200, 232 230" fill="none" stroke="#0e9f6e" stroke-width="1.5" marker-end="url(#ag)"/>
+
+      
+      <g text-anchor="middle">
+        <rect x="532" y="84" width="96" height="56" rx="8" fill="#fff" stroke="#111" stroke-width="1.3"/>
+        <text x="580" y="108" font-size="10.5" font-weight="700" fill="#111">NHN Cloud</text>
+        <text x="580" y="124" font-size="8.5" fill="#666">문자 · 알림톡</text>
+        <text x="580" y="156" font-size="8.5" fill="#666">초당 800명까지</text><text x="580" y="169" font-size="8.5" fill="#666">→ 고객 휴대폰</text>
+      </g>
+      <line x1="502" y1="112" x2="530" y2="112" stroke="#444" marker-end="url(#ar)"/>
+            <path d="M600 140 L 600 224 L 504 224" fill="none" stroke="#444" marker-end="url(#ar)"/>
+      <text x="558" y="218" font-size="8.5" fill="#666" text-anchor="middle">결과 콜백</text>
+
+      
+      <g font-size="9" font-weight="700" text-anchor="middle" fill="#fff">
+        <circle cx="134" cy="84" r="8" fill="#0e9f6e"/><text x="134" y="87.5">1</text>
+        <circle cx="382" cy="70" r="8" fill="#0e9f6e"/><text x="382" y="73.5">2</text>
+        <circle cx="516" cy="132" r="8" fill="#0e9f6e"/><text x="516" y="135.5">3</text>
+        <circle cx="616" cy="182" r="8" fill="#0e9f6e"/><text x="616" y="185.5">4</text>
+        <circle cx="244" cy="176" r="8" fill="#0e9f6e"/><text x="244" y="179.5">5</text>
+      </g>
+    <circle class="flow" r="4.2" fill="#0e9f6e" opacity="0"><animateMotion dur="6s" begin="0s" repeatCount="indefinite" path="M118 100 L148 108 L190 112 L262 112 L316 112 L396 104 L450 108 L530 112 L600 140 L600 224 L504 224 L450 224 L398 216 L352 143 L316 140 L270 140 L232 230 L190 239 L120 239" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#0e9f6e" opacity="0"><animateMotion dur="6s" begin="0s" repeatCount="indefinite" path="M118 100 L148 108 L190 112 L262 112 L316 112 L396 104 L450 108 L530 112 L600 140 L600 224 L504 224 L450 224 L398 216 L352 143 L316 140 L270 140 L232 230 L190 239 L120 239"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="6s" begin="0s" repeatCount="indefinite"/></circle><circle class="flow" r="4.2" fill="#0e9f6e" opacity="0"><animateMotion dur="6s" begin="2s" repeatCount="indefinite" path="M118 174 L148 120 L190 112 L262 112 L316 112 L396 104 L450 108 L530 112 L600 140 L600 224 L504 224 L450 224 L398 216 L352 143 L316 140 L270 140 L232 230 L190 239 L120 239" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="6s" begin="2s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#0e9f6e" opacity="0"><animateMotion dur="6s" begin="2s" repeatCount="indefinite" path="M118 174 L148 120 L190 112 L262 112 L316 112 L396 104 L450 108 L530 112 L600 140 L600 224 L504 224 L450 224 L398 216 L352 143 L316 140 L270 140 L232 230 L190 239 L120 239"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="6s" begin="2s" repeatCount="indefinite"/></circle><circle class="flow" r="4.2" fill="#0e9f6e" opacity="0"><animateMotion dur="6s" begin="4s" repeatCount="indefinite" path="M118 100 L148 108 L190 112 L262 112 L316 112 L396 104 L450 108 L530 112 L600 140 L600 224 L504 224 L450 224 L398 216 L352 143 L316 140 L270 140 L232 230 L190 239 L120 239" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="6s" begin="4s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#0e9f6e" opacity="0"><animateMotion dur="6s" begin="4s" repeatCount="indefinite" path="M118 100 L148 108 L190 112 L262 112 L316 112 L396 104 L450 108 L530 112 L600 140 L600 224 L504 224 L450 224 L398 216 L352 143 L316 140 L270 140 L232 230 L190 239 L120 239"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="6s" begin="4s" repeatCount="indefinite"/></circle></svg>
+  </div>
+  <ol class="steps">
+    <li>서비스는 SDK로 발송 요청을 SQS에 넣습니다. 대량·예약 발송은 배치가 500건씩 나눠 넣습니다.</li>
+    <li>service가 요청을 받아 이력을 남기고, 수신자 200명 단위 잡으로 나눠 BullMQ에 넣습니다.</li>
+    <li>processor가 중계사 한도 안에서 보냅니다. 요청 자체가 실패하면 바로 실패 결과로 돌려보냅니다.</li>
+    <li>중계사의 결과 콜백은 webhook이 서명만 확인하고 큐에 넣습니다. 콜백이 몰려도 DB는 영향을 받지 않습니다.</li>
+    <li>service가 수신자별 상태를 확정하고, 결과를 SQS로 요청한 서비스에 돌려줍니다.</li>
+  </ol>
+
+  <h3>DB 분리</h3>
+  <p>메시지 시스템은 기존 운영 DB와 완전히 떨어진 전용 DB를 씁니다. 캠페인 한 번이면 수신자 수만큼 결과 행이 생기고 콜백이 올 때마다 갱신되는데, 이 쓰기가 주문·결제가 도는 운영 DB에 섞이지 않게 하려는 것이었습니다. 두 DB는 서로 조회하지 않고 SQS로만 이어집니다.</p>
+  <div class="table-wrap"><table style="margin:6px 0 4px">
+    <tr><th style="width:22%"></th><th style="width:39%">운영 DB (서비스 쪽)</th><th>메시지 전용 DB</th></tr>
+    <tr><td>담는 것</td><td>템플릿·발신 설정, 기능별 요청 행(어떤 주문의 알림인지)</td><td>발송 이력, 수신자별 상태, 중계사 콜백 원본</td></tr>
+    <tr><td>쓰는 쪽</td><td>각 서비스, 결과를 반영하는 배치</td><td>메시지 시스템만</td></tr>
+  </table></div>
+
+  <h3>아웃박스와 멱등</h3>
+  <p>서비스 쪽은 아웃박스 패턴으로 요청 유실을 막았습니다. 주문 같은 도메인 트랜잭션 안에서 발송 요청 행을 먼저 기록하고, 커밋한 뒤에 보냅니다. 보내기 전에 앱이 죽거나 SQS 접수가 실패해 남은 요청은 배치가 1분마다 찾아 다시 보냅니다(5분 경과, 최대 5회, 회차는 MySQL 락으로 하나만). 메시지 시스템이 멈춰도 영향은 그 발송뿐이고 다른 API는 정상입니다.</p>
+  <p>다시 보내면 같은 요청이 두 번 갈 수 있어서, 메시지 시스템은 <code>(요청 서비스, 요청 ID)</code> 유니크 키로 한 번만 받고 잡 ID도 요청에서 결정적으로 만들어 재시작 뒤 다시 넣어도 같은 잡이 되게 했습니다. 수신자마다 발급한 메시지 ID 하나로 요청부터 중계사 결과까지 조회합니다.</p>
+
+  <h3>결과</h3>
+  <p>2026년 9월 운영에 올렸고, 지금은 고객 앱, 판매처 관리 화면, 운영 어드민, 외부 제휴 API가 SDK 메서드 하나로 주문·MNO 신청·제품키·재입고 알림을 보냅니다. 개발 환경에서 3개 채널 4.5만 건을 2분에 처리했고, 이때 CPU는 최대 49%였습니다.</p>
+  
+</div>
+</details>
+<details class="case" id="case-03">
+  <summary><span class="case-no">03</span><span class="case-t">이벤트 파이프라인과 Snowflake 적재<small>Kinesis 수집, DMS CDC 무중단 교체, dbt</small></span></summary>
+  <div class="case-body"><div class="byline">Vinu Labs · 2026.05 ~ · 설계 및 구축</div>
+
+  <h3>배경</h3>
+  <p>사용자 행동 로그는 레거시 웹 서버가 Firehose로 보내 Redshift에 주기적으로 적재하는 구조였습니다. 이벤트 정의가 서버, 프론트, 분석 쪽에 흩어져 있어 같은 행동을 서로 다르게 기록했고, 새 프론트를 만들면서 이벤트를 SDK 하나로 모으고 수집 경로도 새로 짜기로 했습니다.</p>
+
+  <div class="fig" style="padding:10px 8px 6px">
+    <svg viewBox="0 0 640 214" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans KR, sans-serif">
+      <defs>
+        <marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0,0L10,5L0,10z" fill="#444"/></marker>
+        <marker id="pg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0,0L10,5L0,10z" fill="#0e9f6e"/></marker>
+      </defs>
+      <text x="8" y="16" font-size="10" font-weight="700" fill="#333">행동 이벤트</text>
+      <text x="8" y="146" font-size="10" font-weight="700" fill="#0b7a55">운영 DB 변경 (CDC)</text>
+      <g text-anchor="middle">
+        <rect x="8" y="26" width="92" height="36" rx="7" fill="#f5f6f7" stroke="#d0d4d8"/><text x="54" y="42" font-size="9.5" font-weight="700">브라우저 SDK</text><text x="54" y="55" font-size="8" fill="#666">20건 또는 5초 배치</text>
+        <rect x="8" y="76" width="92" height="36" rx="7" fill="#f5f6f7" stroke="#d0d4d8"/><text x="54" y="92" font-size="9.5" font-weight="700">서버 SDK</text><text x="54" y="105" font-size="8" fill="#666">API · 운영 어드민</text>
+        <rect x="122" y="26" width="84" height="36" rx="7" fill="#111"/><text x="164" y="42" font-size="9.5" font-weight="700" fill="#fff">event-api</text><text x="164" y="55" font-size="8" fill="#bbb">1차 검증만</text>
+        <rect x="230" y="40" width="88" height="56" rx="7" fill="#111"/><text x="274" y="62" font-size="10" font-weight="700" fill="#fff">Kinesis</text><text x="274" y="76" font-size="8" fill="#bbb">7일 보관</text><text x="274" y="87" font-size="8" fill="#bbb">버퍼</text>
+        <rect x="342" y="40" width="80" height="56" rx="7" fill="#111"/><text x="382" y="66" font-size="10" font-weight="700" fill="#fff">Firehose</text><text x="382" y="80" font-size="8" fill="#bbb">변환·배치</text>
+        <rect x="446" y="26" width="86" height="36" rx="7" fill="#fff" stroke="#999"/><text x="489" y="42" font-size="9" font-weight="700">S3 Parquet</text><text x="489" y="55" font-size="8" fill="#666">분석용</text>
+        <rect x="446" y="74" width="86" height="36" rx="7" fill="#fff" stroke="#999"/><text x="489" y="90" font-size="9" font-weight="700">S3 JSON</text><text x="489" y="103" font-size="8" fill="#666">재처리용 원본</text>
+        <rect x="554" y="14" width="80" height="30" rx="7" fill="#fff" stroke="#999"/><text x="594" y="33" font-size="9">Athena · Tableau</text>
+        
+        <rect x="8" y="156" width="92" height="40" rx="7" fill="#fff" stroke="#0e9f6e"/><text x="54" y="173" font-size="9.5" font-weight="700">운영 Aurora</text><text x="54" y="187" font-size="8" fill="#666">binlog</text>
+        <rect x="140" y="156" width="110" height="40" rx="7" fill="#0e9f6e"/><text x="195" y="173" font-size="9.5" font-weight="700" fill="#fff">DMS CDC 태스크</text><text x="195" y="187" font-size="8" fill="#e3f5ee">주문 · 회원 · 상품 · 카탈로그</text>
+        <rect x="290" y="156" width="80" height="40" rx="7" fill="#fff" stroke="#0e9f6e"/><text x="330" y="180" font-size="9">S3</text>
+        <rect x="446" y="140" width="188" height="64" rx="9" fill="#eef8f3" stroke="#0e9f6e" stroke-width="1.5"/><text x="540" y="162" font-size="11" font-weight="700" fill="#0b7a55">Snowflake</text><text x="540" y="178" font-size="8.5" fill="#333">dbt: raw → staging → publish</text><text x="540" y="192" font-size="8.5" fill="#333">매시 증분 빌드 · LLM 상품 분류</text>
+      </g>
+      <g stroke="#444" fill="none">
+        <line x1="100" y1="44" x2="120" y2="44" marker-end="url(#pa)"/>
+        <path d="M206 44 L 218 44 L 218 58 L 228 58" marker-end="url(#pa)"/>
+        <path d="M100 94 L 218 94 L 218 80 L 228 80" marker-end="url(#pa)"/>
+        <line x1="318" y1="68" x2="340" y2="68" marker-end="url(#pa)"/>
+        <path d="M422 60 L 434 60 L 434 44 L 444 44" marker-end="url(#pa)"/>
+        <path d="M422 76 L 434 76 L 434 92 L 444 92" marker-end="url(#pa)"/>
+        <line x1="532" y1="38" x2="552" y2="32" marker-end="url(#pa)"/>
+      </g>
+      <g stroke="#0e9f6e" stroke-width="1.5" fill="none">
+        <path d="M520 62 C 545 90, 545 110, 540 138" marker-end="url(#pg)"/>
+        <line x1="100" y1="176" x2="138" y2="176" marker-end="url(#pg)"/>
+        <line x1="250" y1="176" x2="288" y2="176" marker-end="url(#pg)"/>
+        <line x1="370" y1="176" x2="444" y2="176" marker-end="url(#pg)"/>
+      </g>
+      <text x="566" y="118" font-size="8" fill="#0b7a55">매시 증분</text>
+      <text x="407" y="170" font-size="8" fill="#0b7a55" text-anchor="middle">실시간 변경분</text>
+    <circle class="flow" r="4.2" fill="#337ea9" opacity="0"><animateMotion dur="4.5s" begin="0s" repeatCount="indefinite" path="M100 44 L120 44 L206 44 L218 44 L218 58 L228 58 L274 68 L318 68 L340 68 L382 68 L422 60 L434 44 L444 44 L489 44 L520 62 C 545 90, 545 110, 540 138" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="4.5s" begin="0s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#337ea9" opacity="0"><animateMotion dur="4.5s" begin="0s" repeatCount="indefinite" path="M100 44 L120 44 L206 44 L218 44 L218 58 L228 58 L274 68 L318 68 L340 68 L382 68 L422 60 L434 44 L444 44 L489 44 L520 62 C 545 90, 545 110, 540 138"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="4.5s" begin="0s" repeatCount="indefinite"/></circle><circle class="flow" r="4.2" fill="#337ea9" opacity="0"><animateMotion dur="4s" begin="1.5s" repeatCount="indefinite" path="M100 94 L218 94 L218 80 L228 80 L274 68 L318 68 L340 68 L382 68 L422 76 L434 92 L444 92 L489 92" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="4s" begin="1.5s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#337ea9" opacity="0"><animateMotion dur="4s" begin="1.5s" repeatCount="indefinite" path="M100 94 L218 94 L218 80 L228 80 L274 68 L318 68 L340 68 L382 68 L422 76 L434 92 L444 92 L489 92"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="4s" begin="1.5s" repeatCount="indefinite"/></circle><circle class="flow" r="4.2" fill="#0e9f6e" opacity="0"><animateMotion dur="3.5s" begin="0.8s" repeatCount="indefinite" path="M100 176 L138 176 L195 176 L250 176 L288 176 L330 176 L370 176 L444 176 L540 176" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="3.5s" begin="0.8s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#0e9f6e" opacity="0"><animateMotion dur="3.5s" begin="0.8s" repeatCount="indefinite" path="M100 176 L138 176 L195 176 L250 176 L288 176 L330 176 L370 176 L444 176 L540 176"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="3.5s" begin="0.8s" repeatCount="indefinite"/></circle><circle class="flow" r="4.2" fill="#0e9f6e" opacity="0"><animateMotion dur="3.5s" begin="2.55s" repeatCount="indefinite" path="M100 176 L138 176 L195 176 L250 176 L288 176 L330 176 L370 176 L444 176 L540 176" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="3.5s" begin="2.55s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#0e9f6e" opacity="0"><animateMotion dur="3.5s" begin="2.55s" repeatCount="indefinite" path="M100 176 L138 176 L195 176 L250 176 L288 176 L330 176 L370 176 L444 176 L540 176"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="3.5s" begin="2.55s" repeatCount="indefinite"/></circle></svg>
+    <div class="cap">위는 행동 이벤트 수집 경로, 아래 초록은 운영 DB 변경분(CDC) 적재 경로입니다.</div>
+  </div>
+
+  <h3>설계 판단</h3>
+  <ul>
+    <li><b>Firehose 앞에 Kinesis.</b> Firehose에 바로 넣으면 버퍼링 정책이 곧 수집 정책이 됩니다. 스트림을 두고 7일 보관해 유실을 막고, 나중에 다른 소비자를 붙일 수 있게 했습니다.</li>
+    <li><b>수집 서버(event-api)를 API 서버와 분리.</b> 분석 이벤트는 일부 유실이 허용되지만 결제는 아닙니다. 같은 자원과 처리량 제한을 나눠 쓰지 않게 했습니다.</li>
+    <li><b>게이트웨이는 1차 검증만.</b> 본검증까지 하면 스키마가 바뀔 때마다 수집 서버를 배포해야 하고, 그 사이 이벤트가 버려집니다.</li>
+    <li><b>S3는 Parquet와 원본 JSON 두 벌.</b> Athena는 읽은 바이트로 과금되니 분석용은 Parquet로, 원본은 재처리용 보험으로 둡니다.</li>
+  </ul>
+  <p style="margin-top:8px">2026년 5월 가동 후 하루 약 164만 건(평균 초당 19건, 피크 29건)이 들어오고, 피크 때도 Kinesis 처리 용량의 5%가 안 됩니다.</p>
+  
+
+<h3>Snowflake로 모으기</h3>
+  <p>분석 환경은 Redshift(월 약 65만 원)를 중간 저장소로 쓰고 있었는데, 회사 전체 분석을 Snowflake로 모으기로 하면서 S3까지는 안정적으로 쌓고 그 뒤는 Snowflake가 가져가는 구조로 정리했습니다. 운영 DB의 변경분도 DMS CDC로 Snowflake에 넣고 dbt로 정리했습니다.</p>
+
+  <h3>운영 중인 CDC 태스크 무중단 교체</h3>
+  <p>파트너사 교환권 번호가 개인정보로 분류되면서, 주문 CDC가 이 값을 웨어하우스에 평문으로 쌓고 있다는 게 문제가 됐습니다. 컬럼을 빼는 매핑 변경은 실행 중인 태스크에 적용되지 않아서 새 태스크로 넘겨야 했습니다.</p>
+  <ul>
+    <li>기존 태스크를 특정 커밋 시각에 멈추고, 새 태스크를 같은 시각부터 시작해 이어 붙였습니다(매핑 규칙 163개).</li>
+    <li>되돌릴 수 있는 기한을 "정지 시각 + binlog 보관 72시간"으로 못 박고 복구 지점을 기록했습니다.</li>
+    <li>경계 앞뒤 5분 중복 0행, 경계 이후 반영 정상을 확인했습니다.</li>
+    <li>이미 쌓인 값은 S3 파일 242개와 Snowflake 원본 2,379행에서 지우고, dbt 모델에서도 빼 다시 들어오지 않게 했습니다.</li>
+  </ul>
+
+  <h3>상품 데이터 추가와 LLM 분류 격리</h3>
+  <p>상품 자동 분류에 필요한 카테고리·브랜드·옵션 등 테이블 11개를 새 CDC 태스크로 추가했습니다. 넣기 전에 DMS 인스턴스의 7일 최저 여유 메모리를 확인했고, 1회 풀로드 225,370행이 원본 개수와 모두 일치하는 것을 본 뒤 dbt 모델 55개와 지연 알람을 붙였습니다.</p>
+  <p>상품 분류는 Snowflake 안에서 LLM을 부르는데, 이게 실패하면 매시 돌던 전체 적재까지 멈추고 연속 실패 시 태스크가 자동 정지되는 구조였습니다. 분류 빌드를 별도 태스크로 떼어 적재와 분리했고, 후보 모델 12개를 정답을 숨긴 300건으로 비교해 정확도를 유지하면서 1,000건당 비용을 10.41 → 7.47 크레딧(약 28%)으로 낮췄습니다.</p>
+
+  <h3>다음 과제</h3>
+  <p>11월에 행동 이벤트 경로 전체를 다시 점검해 보니, 전송 실패 알람이 없고 실패한 이벤트를 다시 보내지 않으며(fire-and-forget), 개발 환경 설정이 운영 스트림을 가리키는 문제가 있었습니다. 내년 광고·CRM으로 이벤트를 더 많이 쓰게 되는 만큼, DLQ와 중복 제거, 환경 분리를 먼저 넣으려고 합니다.</p>
+  
+</div>
+</details>
+<details class="case" id="case-04">
+  <summary><span class="case-no">04</span><span class="case-t">에브리타임 · 대학백과 SSO와 외부 연동<small>웹뷰 SSO, PKCE, 다우기술 교환권 예외 처리</small></span></summary>
+  <div class="case-body"><div class="byline">Vinu Labs · 2026 · 백엔드와 연동 프론트 구현</div>
+
+  <h3>에브리타임 웹뷰 자동 로그인</h3>
+  <p>우리 쇼핑 화면은 에브리타임 앱 안의 웹뷰로도 열립니다. 이 경로에서는 로그인 화면 없이 항상 자동으로 로그인돼야 하는데, 2026년 6월 웹 전체를 새 프론트로 옮기면서 이 동작을 다시 만들어야 했습니다.</p>
+  <p>세션이 없는 채로 들어오면 에브리타임 인가 서버로 보내고, 돌아온 인가 코드를 서버에서 토큰으로 바꿔 프로필을 받은 뒤 가입하거나 로그인시킵니다. 웹뷰 전체를 대상으로 잡으면 카카오·네이버 웹뷰에서도 리다이렉트가 걸릴 수 있어서, 앱 User-Agent를 에브리타임, 대학백과, 자사 앱으로 나눠 판별하게 바꿨습니다. 이후 대학백과 앱에서 에브리타임 로그인이 뜨던 문제도 이 구분으로 해결했습니다.</p>
+  <ul>
+    <li>재가입 제한 회원의 가입을 거절할 때 에브리타임 쪽 연동을 풀지 않아, 다음 시도에서 제3자 제공 동의 화면이 건너뛰어지던 문제를 찾아 레거시와 같게 연동 해제를 호출하도록 고치고 테스트를 붙였습니다.</li>
+    <li>회원 식별자(uid)가 없는 기존 회원은 로그인 시점에 채우되, 동시에 두 번 로그인해도 하나만 생기도록 조건부 UPDATE로 막았습니다.</li>
+  </ul>
+
+  <h3>대학백과 SSO</h3>
+  <p>고등학생이 많은 대학백과 앱 사용자를 예비 대학생 회원으로 받기 위해 대학백과 SSO를 붙였습니다. 브라우저에 시크릿을 둘 수 없는 앱 웹뷰라 PKCE 방식으로 로그인하고, 가입 직후 본인인증, 파트너용 연동 상태 API, 탈퇴·가입 실패 시 연동 해제를 만들었습니다. IP 허용, API 키, OAuth 시크릿은 상대 회사 개발자와 맞춰 개발·운영 환경에 반영했습니다.</p>
+  <p>배포 후 13일 동안 대학백과 계정 가입이 222명이었고 그중 128명이 고등학생 인증을 마쳤습니다. 고등학생 인증 회원의 일평균 순증은 15.2명에서 24.4명으로 늘었습니다.</p>
+  
+
+<h3>다우기술 모바일교환권</h3>
+  <p>교환권 공급사가 한 곳뿐이라 그곳이 멈추면 판매도 멈췄습니다. 두 번째 공급사로 다우기술을 붙이면서, 상대 시스템의 규격서와 실제 동작이 다를 수 있다는 전제로 중복·유실·경쟁 조건을 우리 쪽에서 막는 데 집중했습니다.</p>
+  <div class="table-wrap"><table style="margin:6px 0 8px">
+    <tr><th style="width:24%">상황</th><th>처리</th></tr>
+    <tr><td>콜백 중복<br><span style="color:#777">실패 시 3회 + 1시간 뒤 3회 재전송</span></td><td>(쿠폰번호, 교환번호, 상태)를 아웃박스 유니크 키로 걸어 중복이면 건너뛰고 성공으로 응답</td></tr>
+    <tr><td>발행 응답 유실</td><td>타임아웃 시 롤백 표시를 남기고, 10분 뒤 주문번호로 조회해 발행돼 있으면 폐기</td></tr>
+    <tr><td>동시 콜백의 잔액 역전</td><td>여러 대에서 늦게 처리된 옛 콜백이 잔액을 덮어쓰던 문제를 조건부 UPDATE 한 번으로 차단</td></tr>
+    <tr><td>발행 한도 초과</td><td>해당 판매처 판매를 자동으로 멈추고 모니터링 채널에 알림</td></tr>
+    <tr><td>상대 호출 한도</td><td>초당 10건 한도의 절반만 쓰도록 200ms 간격, 배치 두 개가 MySQL 락 하나를 공유</td></tr>
+  </table></div>
+  <p>규격서와 실제가 다른 곳도 여럿 있었습니다. API마다 응답 형식이 달랐고(평문과 JSON), 규격서 예시 키에 오타가 있었으며, 검수 서버가 보내던 잔액·환불 필드를 운영 서버는 보내지 않았습니다. 마지막 건은 운영 QA에서 찾아 필드가 없어도 처리되게 고쳤습니다.</p>
+  <p>배포는 두 겹의 스위치(환경 변수와 환경 가드)를 둔 채 꺼진 상태로 먼저 올리고(11/02), 롤백 절차를 정리한 뒤 켰습니다(11/12). 꺼져 있어도 이미 발행된 쿠폰의 조회·취소·재발송은 막지 않게 했습니다.</p>
+  
+</div>
+</details>
+<details class="case" id="case-05">
+  <summary><span class="case-no">05</span><span class="case-t">운영 이슈 대응과 보안<small>nginx 패치, 장애 원인 분석, ISMS-P</small></span></summary>
+  <div class="case-body"><div class="byline">Vinu Labs · 상시 · 운영 이슈 감시와 대응, 보안 패치, ISMS-P 대응 담당</div>
+
+  <h3>하는 일</h3>
+  <p>기능 개발과 별개로, 운영에서 올라오는 알람과 문의를 살피고 원인을 찾아 고치는 일을 맡고 있습니다. 보안 취약점이 공개되면 우리 서버에 해당하는지 확인해 패치하고, 매년 ISMS-P 취약점 점검에 맞춰 점검 환경과 조치를 준비합니다. 아래는 최근 석 달 동안 처리한 건입니다.</p>
+
+  <h3>최근 처리한 이슈</h3>
+  <div class="table-wrap"><table style="margin-top:6px">
+    <tr><th style="width:11%">날짜</th><th style="width:22%">이슈</th><th style="width:33%">원인</th><th>조치</th></tr>
+    <tr><td>2026.11.19</td><td>nginx 원격 코드 실행 취약점(nginx2root)</td><td>nginx CVE 5건과 커널 권한 상승을 엮어 인증 없이 root 획득 가능</td><td>서버 3대를 1.28.0 → 1.30.7로 패치. 운영 저장소가 stable이라 mainline 대신 1.30.7을 고르고, HTTP/2는 패치에 수정이 포함돼 유지</td></tr>
+    <tr><td>2026.11.18</td><td>파트너사 오픈 API 연동 중단</td><td>SSL 인증서 교체로 루트 CA가 바뀌어 한 파트너의 TLS 연결만 실패(시간당 약 100건)</td><td>앱·nginx 로그, CloudWatch, VPC 플로 로그를 대조해 키 변경이 아니라 CA 변경임을 확인하고 파트너에 신뢰 목록 추가를 안내</td></tr>
+    <tr><td>2026.11.12</td><td>검색 간헐 502 (약 3개월)</td><td>검색 서버 keep-alive(5초)가 ALB idle(60초)보다 짧았고, 502 한 번에 서킷이 열려 피해가 2배로 커짐</td><td>keep-alive 65초로 역전 해소, fallback을 끄고 1회 재시도 → 502·500 0건</td></tr>
+    <tr><td>2026.10 ~ 11</td><td>교환권 번호 로그 노출</td><td>외부 교환권 연동 로그와 데이터 복제 대상에 교환권 번호 원문이 남음</td><td>로그 마스킹, 웨어하우스 복제 대상에서 해당 컬럼 제외</td></tr>
+  </table></div>
+
+  <h3>ISMS-P 대응</h3>
+  <p>2026년 취약점 점검을 앞두고 정보보안팀 요청에 맞춰 쇼핑몰, 판매처 관리 화면, 운영툴, 정산툴, 검색 대시보드의 점검 계정과 권한을 개발 서버부터 하나씩 만들고 확인했습니다. 점검이 끝나면 회수·복구할 목록도 함께 남겼습니다. KISA 조치 현황 회신을 위해 서버별 Java 버전도 조사했습니다.</p>
+  <p>개인정보 쪽으로는 휴대폰 개통 신청의 보존 기간별 파기 배치, 탈퇴 시 수집 데이터 삭제, 약관 동의 버전 기록을 만들었습니다.</p>
+  
+</div>
+</details>
+
+  <h2 class="sec">🎓 Education</h2>
+  <div class="row"><div class="label">2022.07 – 2023.04</div><div><b>삼성 청년 SW 아카데미</b><br><span style="color:var(--muted)">삼성전자</span></div></div><div class="row"><div class="label">2014.03 – 2022.02</div><div><b>고려대학교</b><br><span style="color:var(--muted)">학사</span></div></div>
+
+  <h2 class="sec">📃 Certificates</h2>
+  <div class="row"><div class="label">2024.09</div><div><b>정보처리기사</b></div></div>
+
+  <footer>Last updated 2026.11</footer>
+</main>
+<button class="theme" type="button" aria-label="화면 테마 바꾸기"></button>
+<script>
+(function () {
+  var root = document.documentElement, btn = document.querySelector('.theme');
+  try { var t = localStorage.getItem('theme'); if (t) root.setAttribute('data-theme', t); } catch (e) {}
+  function dark() { var t = root.getAttribute('data-theme'); return t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; }
+  function icon() { btn.textContent = dark() ? '☀' : '☾'; }
+  btn.addEventListener('click', function () { var n = dark() ? 'light' : 'dark'; root.setAttribute('data-theme', n);
+    try { localStorage.setItem('theme', n); } catch (e) {} icon(); });
+  icon();
+  function openHash() { var el = location.hash && document.querySelector(location.hash);
+    if (el && el.tagName === 'DETAILS') el.open = true; }
+  window.addEventListener('hashchange', openHash); openHash();
+  document.querySelectorAll('.case-link').forEach(function (a) { a.addEventListener('click', function () {
+    var el = document.getElementById('case-' + a.dataset.case); if (el) el.open = true; }); });
+  window.addEventListener('beforeprint', function () { document.querySelectorAll('details').forEach(function (d) { d.open = true; }); });
+})();
+</script></body></html>
