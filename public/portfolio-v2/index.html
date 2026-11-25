@@ -137,8 +137,8 @@
 
   <header>
     <div class="role">Back-End Developer</div>
-    <div class="name"><h1>홍종혁 Hong Jong-Hyuk</h1><span>경력 3년 9개월 · 통신 · 결제 · 메시징 · 데이터 파이프라인</span></div>
-    <p class="intro">통신·결제처럼 규칙과 예외가 많은 도메인에서 여러 외부 파트너의 서로 다른 조건을 하나의 흐름으로 정리해 온 백엔드 개발자입니다. 휴대폰 개통 신청, 메시지 발송, 데이터 파이프라인, 외부 연동을 설계부터 운영까지 맡고 있습니다.</p>
+    <div class="name"><h1>홍종혁 Hong Jong-Hyuk</h1><span>경력 3년 9개월 · 메시징 · 데이터 파이프라인 · 결제 · 외부 연동</span></div>
+    <p class="intro">결제·메시징처럼 규칙과 예외가 많은 도메인에서 여러 외부 파트너의 서로 다른 조건을 하나의 흐름으로 정리해 온 백엔드 개발자입니다. 메시지 발송, 데이터 파이프라인, 외부 연동, 휴대폰 개통 신청을 설계부터 운영까지 맡고 있습니다.</p>
     <p class="intro">문제를 그 자리에서 고치고 끝내기보다, 왜 그렇게 됐는지 한 번 더 들여다보는 것을 좋아합니다. 장애나 설계 고민이 생기면 회사 코드 밖에서 같은 상황을 작게 재현하고 측정해 다른 방법과 비교하고, 그 기록 20개를 <a href="https://xo0449.github.io/backend-lab/">backend-lab</a>에 쌓고 있습니다.</p>
     <p class="intro">최근에는 이벤트 파이프라인을 만들면서 <b>데이터를 모으고 분석하는 쪽</b>에 관심이 커졌습니다. 2026년 8월 Snowflake World Tour Seoul에 참석해 다른 회사들이 데이터 플랫폼을 어떻게 옮기고 운영하는지 듣고, 우리 회사 도입 단계에 맞춰 정리해 팀에 공유했습니다. 이런 컨퍼런스에는 앞으로도 꾸준히 나가 보려고 합니다.</p>
     <nav class="toc">
@@ -425,83 +425,6 @@
 
     <details class="proj">
       <summary>
-        <div class="p-head"><h3>휴대폰 개통 신청(MNO) 내재화</h3><span class="when">2025.03 ~ 현재</span></div>
-        <p class="p-desc">외부 중계업체 링크로만 넘기던 휴대폰 상품을 자체 신청 서비스로 옮긴 프로젝트입니다.</p>
-      </summary>
-      <div class="p-body">
-      <dl class="box">
-        <div><dt>역할</dt><dd>설계 주도 · 백엔드, 운영 어드민, 배치 구현</dd></div>
-        <div><dt>기술 스택</dt><dd>NestJS, MySQL, AWS · 신청 상태 흐름과 감사 로그, 판매처 엑셀 일괄 업로드, 보존 기간별 파기 배치</dd></div>
-        <div><dt>링크</dt><dd><a href="https://univstore.com">univstore.com</a></dd></div>
-      </dl>
-      <p class="lbl">[ 신청 흐름 ]</p>
-<div class="fig">
-    <svg viewBox="0 0 640 170" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans KR, sans-serif" font-size="10.5">
-      <defs><marker id="k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#555"/></marker></defs>
-      <text x="0" y="16" font-weight="700" fill="#888">이전</text>
-      <g text-anchor="middle">
-        <rect x="40" y="24" width="90" height="32" rx="4" fill="#f3f3f3" stroke="#aaa"/><text x="85" y="44">고객</text>
-        <rect x="160" y="24" width="110" height="32" rx="4" fill="#f3f3f3" stroke="#aaa"/><text x="215" y="44">우리 상품 페이지</text>
-        <rect x="300" y="18" width="330" height="44" rx="4" fill="#fff" stroke="#bbb" stroke-dasharray="4 3"/>
-        <rect x="315" y="24" width="140" height="32" rx="4" fill="#f3f3f3" stroke="#aaa"/><text x="385" y="44">중계업체 사이트에서 신청</text>
-        <rect x="485" y="24" width="130" height="32" rx="4" fill="#f3f3f3" stroke="#aaa"/><text x="550" y="44">개통·배송</text>
-        <text x="465" y="74" fill="#999" font-size="9.5">이 구간은 우리에게 보이지 않음</text>
-        <path d="M550 62 Q 550 92 400 92 L 230 92" fill="none" stroke="#c0392b" stroke-dasharray="4 3" marker-end="url(#k)"/>
-        <text x="400" y="86" fill="#c0392b" font-size="9.5">한 달 뒤 결과 파일</text>
-      </g>
-      <g stroke="#555"><line x1="130" y1="40" x2="158" y2="40" marker-end="url(#k)"/><line x1="270" y1="40" x2="313" y2="40" marker-end="url(#k)"/><line x1="455" y1="40" x2="483" y2="40" marker-end="url(#k)"/></g>
-      <text x="0" y="122" font-weight="700" fill="#111">이후</text>
-      <g text-anchor="middle">
-        <rect x="40" y="130" width="90" height="32" rx="4" fill="#fff" stroke="#111"/><text x="85" y="150">고객</text>
-        <rect x="160" y="130" width="140" height="32" rx="4" fill="#111"/><text x="230" y="150" fill="#fff">우리 신청서 · 신청 DB</text>
-        <rect x="330" y="130" width="150" height="32" rx="4" fill="#111"/><text x="405" y="150" fill="#fff">판매처 관리 화면에서 처리</text>
-        <rect x="510" y="130" width="120" height="32" rx="4" fill="#fff" stroke="#111"/><text x="570" y="150">상태를 직접 확인</text>
-      </g>
-      <g stroke="#111"><line x1="130" y1="146" x2="158" y2="146" marker-end="url(#k)"/><line x1="300" y1="146" x2="328" y2="146" marker-end="url(#k)"/><line x1="480" y1="146" x2="508" y2="146" marker-end="url(#k)"/></g>
-    <circle class="flow" r="4.2" fill="#0e9f6e" opacity="0"><animateMotion dur="6.4s" begin="0s" repeatCount="indefinite" path="M130 146 L158 146 L300 146 L328 146 L480 146 L508 146 L570 146" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="6.4s" begin="0s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#0e9f6e" opacity="0"><animateMotion dur="6.4s" begin="0s" repeatCount="indefinite" path="M130 146 L158 146 L300 146 L328 146 L480 146 L508 146 L570 146"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="6.4s" begin="0s" repeatCount="indefinite"/></circle><circle class="flow" r="4.2" fill="#0e9f6e" opacity="0"><animateMotion dur="6.4s" begin="3.2s" repeatCount="indefinite" path="M130 146 L158 146 L300 146 L328 146 L480 146 L508 146 L570 146" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="6.4s" begin="3.2s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#0e9f6e" opacity="0"><animateMotion dur="6.4s" begin="3.2s" repeatCount="indefinite" path="M130 146 L158 146 L300 146 L328 146 L480 146 L508 146 L570 146"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="6.4s" begin="3.2s" repeatCount="indefinite"/></circle><circle class="flow" r="4.2" fill="#9b9a97" opacity="0"><animateMotion dur="7.2s" begin="0.8s" repeatCount="indefinite" path="M85 40 L158 40 L270 40 L313 40 L455 40 L483 40" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="7.2s" begin="0.8s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#9b9a97" opacity="0"><animateMotion dur="7.2s" begin="0.8s" repeatCount="indefinite" path="M85 40 L158 40 L270 40 L313 40 L455 40 L483 40"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="7.2s" begin="0.8s" repeatCount="indefinite"/></circle></svg>
-  </div>
-      <p class="lbl">[ 상세 구현 사항 ]</p>
-      <ul class="dot">
-        <li>신청서, 판매처 처리 화면, 운영 어드민을 만들고 접수·보류·배송·개통 상태 흐름과 감사 로그를 설계했습니다. 판매처의 상태 변경과 송장 등록은 엑셀 일괄 업로드로 받았습니다.</li>
-        <li>단통법 폐지 때 정책이 확정되기 전부터 정책과 무관한 지원금 관리 화면과 엑셀 일괄 등록을 먼저 만들고, 시행 후 <em>2주 안에</em> 지원금을 가입 유형별 구조로 나눠 테이블·엑셀 양식·가격 계산을 재편했습니다.</li>
-        <li>레거시(Node + Handlebars)에서 NestJS API로 이관하며, 레거시 동작을 기준으로 기능을 하나씩 대조 검증하고 2026년 웹 전체 개편과 함께 트래픽 10%부터 단계적으로 전환했습니다. 개편 QA 731건 중 약 230건을 맡아 처리했습니다.</li>
-        <li>신규 API 위에 가족 개통(2026.01), 30·36개월 할부(2026.10)를 추가했습니다.</li>
-      </ul>
-      <p class="lbl">[ 단통법 폐지 대응 일정 ]</p>
-<div class="fig">
-    <svg viewBox="0 0 640 96" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans KR, sans-serif" font-size="9.5">
-      <line x1="20" y1="40" x2="620" y2="40" stroke="#bbb" stroke-width="2"/>
-      <g text-anchor="middle">
-        <circle cx="40" cy="40" r="5" fill="#888"/><text x="40" y="24" font-weight="700">2025.03</text><text x="40" y="60">내재화 결정</text>
-        <circle cx="140" cy="40" r="5" fill="#888"/><text x="140" y="24" font-weight="700">05 ~ 07</text><text x="140" y="60">신청·지원금 관리</text><text x="140" y="73">엑셀 일괄 등록</text>
-        <circle cx="250" cy="40" r="7" fill="#c0392b"/><text x="250" y="24" font-weight="700" fill="#c0392b">07.22</text><text x="250" y="60" fill="#c0392b">단통법 폐지 시행</text><text x="250" y="73" fill="#c0392b">명칭 변경</text>
-        <circle cx="350" cy="40" r="5" fill="#888"/><text x="350" y="24" font-weight="700">08 초</text><text x="350" y="60">가입 유형별</text><text x="350" y="73">지원금 분리</text>
-        <circle cx="450" cy="40" r="5" fill="#111"/><text x="450" y="24" font-weight="700">2025.10</text><text x="450" y="60">신규 API로 이관</text>
-        <circle cx="530" cy="40" r="5" fill="#888"/><text x="530" y="24" font-weight="700">2026.01</text><text x="530" y="60">가족 개통</text>
-        <circle cx="605" cy="40" r="5" fill="#888"/><text x="605" y="24" font-weight="700">2026.10</text><text x="605" y="60">30·36개월</text><text x="605" y="73">할부</text>
-      </g>
-    </svg>
-    <div class="cap">커밋과 회의록 날짜 기준</div>
-  </div>
-      <p class="lbl">[ 레거시와 신규 구조 ]</p>
-<div class="table-wrap"><table style="margin:8px 0 10px">
-    <tr><th style="width:18%"></th><th style="width:41%">레거시 웹</th><th>신규</th></tr>
-    <tr><td>구조</td><td>Node + Handlebars, 프론트·백엔드가 한 레포</td><td>API 서버(NestJS, 도메인 계층 분리)와 프론트 분리</td></tr>
-    <tr><td>MNO 이후 기능</td><td>수정할 때마다 사이드 이펙트</td><td>가족 개통(2026.01), 30·36개월 할부(2026.10)를 신규 API 위에 추가</td></tr>
-  </table></div>
-      <p class="lbl">[ 결과 ]</p>
-      <ul class="dot">
-        <li>이관 뒤에는 가족 개통(2026.01)과 30·36개월 할부(2026.10)를 레거시처럼 다른 곳을 깨뜨리지 않고 신규 API 위에 하나씩 더할 수 있었습니다.</li>
-      </ul>
-      <p class="lbl">[ 회고 ]</p>
-      <ul class="dot">
-        <li>아쉬운 점은 할부 계산입니다. 백엔드는 모노레포였고 공통 모듈도 서브모듈로 함께 쓰고 있었지만, 할부 계산은 당시 일정에 맞춰 신규 API, 고객 화면, 운영 어드민, 리포트에 각각 따로 만들었습니다. 그러다 보니 리포트 금액이 2~3원 어긋나는 일이 생겼습니다. 메시지 시스템에서는 SDK 패키지로 계약을 공유했던 것처럼, 할부 계산도 공통 모듈이나 패키지로 빼서 프론트와 백엔드가 같은 코드를 쓰게 했다면 더 좋았을 것 같습니다.</li>
-      </ul>
-      </div>
-    </details>
-
-    <details class="proj">
-      <summary>
         <div class="p-head"><h3>이벤트 파이프라인 · Snowflake 적재</h3><span class="when">2026.05 ~ 현재</span></div>
         <p class="p-desc">사용자 행동 이벤트와 운영 DB 변경분을 분석 환경으로 모으는 데이터 파이프라인입니다.</p>
       </summary>
@@ -720,6 +643,83 @@
       <p class="lbl">[ 다음 과제 ]</p>
       <ul class="dot">
         <li>11월에 행동 이벤트 경로 전체를 다시 점검해 보니, 전송 실패 알람이 없고 실패한 이벤트를 다시 보내지 않으며(fire-and-forget), 개발 환경 설정이 운영 스트림을 가리키는 문제가 있었습니다. 내년 광고·CRM으로 이벤트를 더 많이 쓰게 되는 만큼, DLQ와 중복 제거, 환경 분리를 먼저 넣으려고 합니다.</li>
+      </ul>
+      </div>
+    </details>
+
+    <details class="proj">
+      <summary>
+        <div class="p-head"><h3>휴대폰 개통 신청(MNO) 내재화</h3><span class="when">2025.03 ~ 현재</span></div>
+        <p class="p-desc">외부 중계업체 링크로만 넘기던 휴대폰 상품을 자체 신청 서비스로 옮긴 프로젝트입니다.</p>
+      </summary>
+      <div class="p-body">
+      <dl class="box">
+        <div><dt>역할</dt><dd>설계 주도 · 백엔드, 운영 어드민, 배치 구현</dd></div>
+        <div><dt>기술 스택</dt><dd>NestJS, MySQL, AWS · 신청 상태 흐름과 감사 로그, 판매처 엑셀 일괄 업로드, 보존 기간별 파기 배치</dd></div>
+        <div><dt>링크</dt><dd><a href="https://univstore.com">univstore.com</a></dd></div>
+      </dl>
+      <p class="lbl">[ 신청 흐름 ]</p>
+<div class="fig">
+    <svg viewBox="0 0 640 170" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans KR, sans-serif" font-size="10.5">
+      <defs><marker id="k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#555"/></marker></defs>
+      <text x="0" y="16" font-weight="700" fill="#888">이전</text>
+      <g text-anchor="middle">
+        <rect x="40" y="24" width="90" height="32" rx="4" fill="#f3f3f3" stroke="#aaa"/><text x="85" y="44">고객</text>
+        <rect x="160" y="24" width="110" height="32" rx="4" fill="#f3f3f3" stroke="#aaa"/><text x="215" y="44">우리 상품 페이지</text>
+        <rect x="300" y="18" width="330" height="44" rx="4" fill="#fff" stroke="#bbb" stroke-dasharray="4 3"/>
+        <rect x="315" y="24" width="140" height="32" rx="4" fill="#f3f3f3" stroke="#aaa"/><text x="385" y="44">중계업체 사이트에서 신청</text>
+        <rect x="485" y="24" width="130" height="32" rx="4" fill="#f3f3f3" stroke="#aaa"/><text x="550" y="44">개통·배송</text>
+        <text x="465" y="74" fill="#999" font-size="9.5">이 구간은 우리에게 보이지 않음</text>
+        <path d="M550 62 Q 550 92 400 92 L 230 92" fill="none" stroke="#c0392b" stroke-dasharray="4 3" marker-end="url(#k)"/>
+        <text x="400" y="86" fill="#c0392b" font-size="9.5">한 달 뒤 결과 파일</text>
+      </g>
+      <g stroke="#555"><line x1="130" y1="40" x2="158" y2="40" marker-end="url(#k)"/><line x1="270" y1="40" x2="313" y2="40" marker-end="url(#k)"/><line x1="455" y1="40" x2="483" y2="40" marker-end="url(#k)"/></g>
+      <text x="0" y="122" font-weight="700" fill="#111">이후</text>
+      <g text-anchor="middle">
+        <rect x="40" y="130" width="90" height="32" rx="4" fill="#fff" stroke="#111"/><text x="85" y="150">고객</text>
+        <rect x="160" y="130" width="140" height="32" rx="4" fill="#111"/><text x="230" y="150" fill="#fff">우리 신청서 · 신청 DB</text>
+        <rect x="330" y="130" width="150" height="32" rx="4" fill="#111"/><text x="405" y="150" fill="#fff">판매처 관리 화면에서 처리</text>
+        <rect x="510" y="130" width="120" height="32" rx="4" fill="#fff" stroke="#111"/><text x="570" y="150">상태를 직접 확인</text>
+      </g>
+      <g stroke="#111"><line x1="130" y1="146" x2="158" y2="146" marker-end="url(#k)"/><line x1="300" y1="146" x2="328" y2="146" marker-end="url(#k)"/><line x1="480" y1="146" x2="508" y2="146" marker-end="url(#k)"/></g>
+    <circle class="flow" r="4.2" fill="#0e9f6e" opacity="0"><animateMotion dur="6.4s" begin="0s" repeatCount="indefinite" path="M130 146 L158 146 L300 146 L328 146 L480 146 L508 146 L570 146" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="6.4s" begin="0s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#0e9f6e" opacity="0"><animateMotion dur="6.4s" begin="0s" repeatCount="indefinite" path="M130 146 L158 146 L300 146 L328 146 L480 146 L508 146 L570 146"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="6.4s" begin="0s" repeatCount="indefinite"/></circle><circle class="flow" r="4.2" fill="#0e9f6e" opacity="0"><animateMotion dur="6.4s" begin="3.2s" repeatCount="indefinite" path="M130 146 L158 146 L300 146 L328 146 L480 146 L508 146 L570 146" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="6.4s" begin="3.2s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#0e9f6e" opacity="0"><animateMotion dur="6.4s" begin="3.2s" repeatCount="indefinite" path="M130 146 L158 146 L300 146 L328 146 L480 146 L508 146 L570 146"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="6.4s" begin="3.2s" repeatCount="indefinite"/></circle><circle class="flow" r="4.2" fill="#9b9a97" opacity="0"><animateMotion dur="7.2s" begin="0.8s" repeatCount="indefinite" path="M85 40 L158 40 L270 40 L313 40 L455 40 L483 40" rotate="auto"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.92;1" dur="7.2s" begin="0.8s" repeatCount="indefinite"/></circle><circle class="flow" r="9" fill="#9b9a97" opacity="0"><animateMotion dur="7.2s" begin="0.8s" repeatCount="indefinite" path="M85 40 L158 40 L270 40 L313 40 L455 40 L483 40"/><animate attributeName="opacity" values="0;.22;.22;0" keyTimes="0;0.06;0.92;1" dur="7.2s" begin="0.8s" repeatCount="indefinite"/></circle></svg>
+  </div>
+      <p class="lbl">[ 상세 구현 사항 ]</p>
+      <ul class="dot">
+        <li>신청서, 판매처 처리 화면, 운영 어드민을 만들고 접수·보류·배송·개통 상태 흐름과 감사 로그를 설계했습니다. 판매처의 상태 변경과 송장 등록은 엑셀 일괄 업로드로 받았습니다.</li>
+        <li>단통법 폐지 때 정책이 확정되기 전부터 정책과 무관한 지원금 관리 화면과 엑셀 일괄 등록을 먼저 만들고, 시행 후 <em>2주 안에</em> 지원금을 가입 유형별 구조로 나눠 테이블·엑셀 양식·가격 계산을 재편했습니다.</li>
+        <li>레거시(Node + Handlebars)에서 NestJS API로 이관하며, 레거시 동작을 기준으로 기능을 하나씩 대조 검증하고 2026년 웹 전체 개편과 함께 트래픽 10%부터 단계적으로 전환했습니다. 개편 QA 731건 중 약 230건을 맡아 처리했습니다.</li>
+        <li>신규 API 위에 가족 개통(2026.01), 30·36개월 할부(2026.10)를 추가했습니다.</li>
+      </ul>
+      <p class="lbl">[ 단통법 폐지 대응 일정 ]</p>
+<div class="fig">
+    <svg viewBox="0 0 640 96" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans KR, sans-serif" font-size="9.5">
+      <line x1="20" y1="40" x2="620" y2="40" stroke="#bbb" stroke-width="2"/>
+      <g text-anchor="middle">
+        <circle cx="40" cy="40" r="5" fill="#888"/><text x="40" y="24" font-weight="700">2025.03</text><text x="40" y="60">내재화 결정</text>
+        <circle cx="140" cy="40" r="5" fill="#888"/><text x="140" y="24" font-weight="700">05 ~ 07</text><text x="140" y="60">신청·지원금 관리</text><text x="140" y="73">엑셀 일괄 등록</text>
+        <circle cx="250" cy="40" r="7" fill="#c0392b"/><text x="250" y="24" font-weight="700" fill="#c0392b">07.22</text><text x="250" y="60" fill="#c0392b">단통법 폐지 시행</text><text x="250" y="73" fill="#c0392b">명칭 변경</text>
+        <circle cx="350" cy="40" r="5" fill="#888"/><text x="350" y="24" font-weight="700">08 초</text><text x="350" y="60">가입 유형별</text><text x="350" y="73">지원금 분리</text>
+        <circle cx="450" cy="40" r="5" fill="#111"/><text x="450" y="24" font-weight="700">2025.10</text><text x="450" y="60">신규 API로 이관</text>
+        <circle cx="530" cy="40" r="5" fill="#888"/><text x="530" y="24" font-weight="700">2026.01</text><text x="530" y="60">가족 개통</text>
+        <circle cx="605" cy="40" r="5" fill="#888"/><text x="605" y="24" font-weight="700">2026.10</text><text x="605" y="60">30·36개월</text><text x="605" y="73">할부</text>
+      </g>
+    </svg>
+    <div class="cap">커밋과 회의록 날짜 기준</div>
+  </div>
+      <p class="lbl">[ 레거시와 신규 구조 ]</p>
+<div class="table-wrap"><table style="margin:8px 0 10px">
+    <tr><th style="width:18%"></th><th style="width:41%">레거시 웹</th><th>신규</th></tr>
+    <tr><td>구조</td><td>Node + Handlebars, 프론트·백엔드가 한 레포</td><td>API 서버(NestJS, 도메인 계층 분리)와 프론트 분리</td></tr>
+    <tr><td>MNO 이후 기능</td><td>수정할 때마다 사이드 이펙트</td><td>가족 개통(2026.01), 30·36개월 할부(2026.10)를 신규 API 위에 추가</td></tr>
+  </table></div>
+      <p class="lbl">[ 결과 ]</p>
+      <ul class="dot">
+        <li>이관 뒤에는 가족 개통(2026.01)과 30·36개월 할부(2026.10)를 레거시처럼 다른 곳을 깨뜨리지 않고 신규 API 위에 하나씩 더할 수 있었습니다.</li>
+      </ul>
+      <p class="lbl">[ 회고 ]</p>
+      <ul class="dot">
+        <li>아쉬운 점은 할부 계산입니다. 백엔드는 모노레포였고 공통 모듈도 서브모듈로 함께 쓰고 있었지만, 할부 계산은 당시 일정에 맞춰 신규 API, 고객 화면, 운영 어드민, 리포트에 각각 따로 만들었습니다. 그러다 보니 리포트 금액이 2~3원 어긋나는 일이 생겼습니다. 메시지 시스템에서는 SDK 패키지로 계약을 공유했던 것처럼, 할부 계산도 공통 모듈이나 패키지로 빼서 프론트와 백엔드가 같은 코드를 쓰게 했다면 더 좋았을 것 같습니다.</li>
       </ul>
       </div>
     </details>
